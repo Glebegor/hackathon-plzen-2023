@@ -7,6 +7,7 @@ export const PAGE_TITLE_SPLLITER = ' | ';
 export enum AppRoute {
   HOME = '/',
   LOGIN = '/login',
-  LOOGUT = '/logout',
+  MANAGEMENT = '/management',
+  LOGOUT = '/logout',
   NOT_FOUND = '*',
 }

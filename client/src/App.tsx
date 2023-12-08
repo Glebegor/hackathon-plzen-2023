@@ -4,6 +4,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import { HomePage } from '@pages/HomePage';
 import { LoginPage } from '@pages/LoginPage';
+import { ManagementPage } from '@pages/ManagementPage';
 import { LogoutPage } from '@pages/LogoutPage';
 import { NotFoundPage } from '@pages/NotFoundPage';
 
@@ -63,7 +64,8 @@ export const App: React.FC = () => {
         }
       >
         <Route path={AppRoute.HOME} element={<HomePage />} />
-        <Route path={AppRoute.LOOGUT} element={<LogoutPage />} />
+        <Route path={AppRoute.MANAGEMENT} element={<ManagementPage />} />
+        <Route path={AppRoute.LOGOUT} element={<LogoutPage />} />
       </Route>
       <Route path={AppRoute.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>

@@ -1,3 +1,5 @@
+import type { IconName } from '@fortawesome/fontawesome-common-types';
+
 export interface Patient {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ export interface Patient {
   place: string;
   isDoctor: boolean;
   mood: string;
+  moodIcon: IconName;
 }

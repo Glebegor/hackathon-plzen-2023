@@ -17,6 +17,7 @@ const EXAMPLE_PATIENTS: Patient[] = [
     surname: 'Suszenka',
     place: '102',
     mood: 'Sad',
+    moodIcon: 'sad-cry',
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ const EXAMPLE_PATIENTS: Patient[] = [
     surname: 'Suszenka',
     place: '102',
     mood: 'Sad',
+    moodIcon: 'sad-cry',
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const EXAMPLE_PATIENTS: Patient[] = [
     surname: 'Suszenka',
     place: '102',
     mood: 'Sad',
+    moodIcon: 'sad-cry',
   },
 ];
 
