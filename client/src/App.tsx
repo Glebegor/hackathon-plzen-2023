@@ -1,7 +1,12 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import { HomePage } from './pages/HomePage';
+
+import { AppRoute } from './utils/route';
 
 export const App: React.FC = () => (
-  <React.Fragment>
-    <h1>App</h1>
-  </React.Fragment>
+  <Routes>
+    <Route path={AppRoute.HOME} element={<HomePage />} />
+  </Routes>
 );
