@@ -37,7 +37,7 @@ export const LoginPage: React.FC = () => {
   });
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title="Login">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>

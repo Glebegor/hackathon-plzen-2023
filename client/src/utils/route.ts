@@ -1,3 +1,6 @@
+export const PAGE_TITLE_BASE = 'CoHack';
+export const PAGE_TITLE_SPLLITER = ' | ';
+
 /**
  * Enumeration representing application routes.
  */

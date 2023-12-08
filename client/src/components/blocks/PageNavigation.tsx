@@ -17,13 +17,17 @@ export const PageNavigation: React.FC = () => {
           <Link to={AppRoute.HOME}>Home</Link>
         </li>
         {!isLoggedIn ? (
-          <li>
-            <Link to={AppRoute.LOGIN}>Sign in</Link>
-          </li>
+          <React.Fragment>
+            <li>
+              <Link to={AppRoute.LOGIN}>Sign in</Link>
+            </li>
+          </React.Fragment>
         ) : (
-          <li>
-            <Link to={AppRoute.LOOGUT}>Sign out</Link>
-          </li>
+          <React.Fragment>
+            <li>
+              <Link to={AppRoute.LOOGUT}>Sign out</Link>
+            </li>
+          </React.Fragment>
         )}
       </ul>
     </nav>
