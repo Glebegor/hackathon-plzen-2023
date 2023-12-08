@@ -1,8 +1,19 @@
 const express = require('express');
 
-// Configs
+// Configs and environments
 const config = require('config-yml').load('config/configs.yml')
-console.log(config)
+const env = require('dotenv').config();
+
+const DBConfig = config["db"]
+
+const pool = new Pool({
+    user: DBConfig["username"],
+    host: DBConfig["host"],
+    database: DBConfig["name"],
+    password: env["DB_PASSWORD"],
+    port: DBConfig["port"], 
+});
+console.log(pool)
 
 // Application setup
 const app = express();
