@@ -4,6 +4,6 @@ const router = express.Router();
 // Controllers
 const ApiController = require('../controllers/AuthController');
 
-router.use('/auth', ApiController);
+router.use('', ApiController);
 
 module.exports = router;

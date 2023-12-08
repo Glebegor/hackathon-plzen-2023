@@ -4,6 +4,6 @@ const router = express.Router();
 // Controllers
 const ApiController = require('../controllers/ApiController');
 
-router.use('/api', ApiController);
+router.use('/v1', ApiController);
 
 module.exports = router;
