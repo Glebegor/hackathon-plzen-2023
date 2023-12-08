@@ -1,16 +1,16 @@
 CREATE TABLE reasons (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
     description VARCHAR(255) NOT NULL
 );
 CREATE TABLE emoji (
     id SERIAL PRIMARY KEY,
     HEX VARCHAR(255) NOT NULL,
-    charset VARCHAR(64) NOT NULL
+    charset VARCHAR(64) NOT NULL UNIQUE
 );
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY,
-    username SERIAL NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     password_hash VARCHAR(500) NOT NULL,
