@@ -19,11 +19,11 @@
           - "/:id"    PATCH
           - "/:id"    DELETE
       - "/patient":
-          - "/"       POST 
-          - "/:id"    GET
+          - "/"       POST +
+          - "/:id"    GET +
           - "/"       GET +
-          - "/:id"    PATCH
-          - "/:id"    DELETE
+          - "/:id"    PATCH +
+          - "/:id"    DELETE +
       - "/emoji":
           - "/"       POST
           - "/"       GET
