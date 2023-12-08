@@ -3,7 +3,7 @@ const fs = require("fs");
 
 pool.connect();
 
-pool.query("INSERT INTO users (name, surname, password_hash, birth_certificate_number) VALUES (admin, admin, 123edwqsc123, 00000000) RETURNING *", (err, res)=>{
+pool.query("INSERT INTO users (username, name, surname, password_hash, birth_certificate_number, isDoctor) VALUES (admin, admin, admin, wqe123qwleko-qweedwqsc123, 0063202310, true) RETURNING *", (err, res)=>{
     if(!err){
         console.log(res.rows);
     } else{

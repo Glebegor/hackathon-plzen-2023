@@ -1,11 +1,11 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const router = express.Router();
 const pool = require('../repositories/postgres');
 const Secret_key = process.env.SECRET_KEY
+const router = express.Router();
+
 
 
 // Auth 
@@ -27,6 +27,7 @@ router.post('/login', (req, res) => {
            "userSurname": userData.surname
           }, 
           Secret_key, 
+          { expiresIn: '3600s' },
           (err, token) => {
             if (err != undefined) {
               res.status(401);
@@ -81,13 +82,5 @@ router.post('/register', async (req, res) => {
     res.json({ "message": error.message });
   }
 });
-// router.get('/verify', (req, res) => {
-//   try {
-
-//   } catch (error) {
-//     console.log(error.message)
-//     res.json({ "message": error.message });
-//   }
-// });
 
 module.exports = router;

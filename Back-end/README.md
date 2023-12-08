@@ -3,9 +3,8 @@
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"   POST
-    -   "/login"      POST
-    <!-- -   "/verify"     GET     -->
+    -   "/register"   POST +
+    -   "/login"      POST +
 2. "/api/v1":
       - "/notes":
           - "/"       POST
@@ -20,8 +19,9 @@
           - "/:id"    PATCH
           - "/:id"    DELETE
       - "/patient":
-          - "/"       POST
+          - "/"       POST 
           - "/:id"    GET
+          - "/"       GET +
           - "/:id"    PATCH
           - "/:id"    DELETE
       - "/emoji":
@@ -33,7 +33,6 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
 "/auth/v1/login"                     POST<br>
-<!-- "/auth/v1/verify"                    GET<br> -->
 <br>
 "/api/v2":<br>
 <br>
@@ -52,6 +51,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/api/v2/reasons/:id"                DELETE<br>
 <br>
 "/api/v2/patient": - FOR doctors<br>
+"/api/v2/patient/"                   GET<br>
 "/api/v2/patient/:id"                GET<br>
 "/api/v2/patient/:id"                PATCH<br>
 "/api/v2/patient/:id"                DELETE<br>
@@ -89,14 +89,6 @@ Type | JSON
 Request | { "username": "Username", "password_hash": "123456789" }
 Response | { "token": "wqewqeqwr123o1kepo2k-c439eropu1j32WADISIADOUI" }
 Error Response | { "message": "Some text" } 
-
-<!-- <h4>"/auth/v1/verify", method:GET.</h4>
-
-Type | JSON 
---- | --- 
-Request | { "token": "wqewqeqwr123o1kepo2k-c439!fpeowipoj2134WJDWADISIADOUI" }
-Response | { "status": "OK" } 
-Error Response | { "message": "Some text" } | Headers -->
 
 <h3>Notes</h3>
 <hr>

@@ -1,14 +1,10 @@
 const express = require('express');
+
+const PacientController = require('./PacientController')
+
 const router = express.Router();
 
-// Notes CRUD
-router.get('/notes', (req, res) => {
-  res.json({ "Notes": "ok"  });
-});
+router.use('/patient', PacientController)
 
-// patient CRUD
-router.get('/patient', (req, res) => {
-    res.json({ "patient": "ok"  });
-});
 
 module.exports = router;
