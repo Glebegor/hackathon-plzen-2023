@@ -6,13 +6,15 @@ const pool = require('../db');
 router.get('/login', (req, res) => {
   res.json({ "Login": "ok"  });
 });
-router.get('/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const {name, surname, password_hash, birth_certificate_number} = req.body;
     const result = await pool.query(
-      'INSERT INTO users (name, description) VALUES ($1, $2) RETURNING *',
-      [name, description]
+      'INSERT INTO users (name, surname, password_hash, birth_certificate_number) VALUES ($1, $2, $3, $4) RETURNING *',
+      [data]
     );
+    console.log(data)
+    res.json({})
   } catch (error) {
     res.json({ "Register": "ok"  });
   }
