@@ -6,9 +6,9 @@ router.get('/notes', (req, res) => {
   res.json({ "Notes": "ok"  });
 });
 
-// Pacient CRUD
-router.get('/pacient', (req, res) => {
-    res.json({ "Pacient": "ok"  });
+// patient CRUD
+router.get('/patient', (req, res) => {
+    res.json({ "patient": "ok"  });
 });
 
 module.exports = router;

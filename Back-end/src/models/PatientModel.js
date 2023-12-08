@@ -1,4 +1,4 @@
-class PacientModel {
+class PatientModel {
   constructor() {
     this.data = ['item1', 'item2', 'item3'];
   }
@@ -8,4 +8,4 @@ class PacientModel {
   }
 }
 
-module.exports = PacientModel;
+module.exports = PatientModel;

@@ -19,7 +19,7 @@
           - "/:id"    GET
           - "/:id"    PATCH
           - "/:id"    DELETE
-      - "/pacient":
+      - "/patient":
           - "/"       POST
           - "/"       GET
           - "/:id"    GET
@@ -48,12 +48,12 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/api/v2/reasons/:id"                PATCH<br>
 "/api/v2/reasons/:id"                DELETE<br>
 <br>
-"/api/v2/pacient": - FOR doctors<br>
-"/api/v2/pacient/"                   POST<br>
-"/api/v2/pacient/"                   GET<br>
-"/api/v2/pacient/:id"                GET<br>
-"/api/v2/pacient/:id"                PATCH<br>
-"/api/v2/pacient/:id"                DELETE<br>
+"/api/v2/patient": - FOR doctors<br>
+"/api/v2/patient/"                   POST<br>
+"/api/v2/patient/"                   GET<br>
+"/api/v2/patient/:id"                GET<br>
+"/api/v2/patient/:id"                PATCH<br>
+"/api/v2/patient/:id"                DELETE<br>
 
 <h3>JWT token and his structure</h3>
 <hr>
