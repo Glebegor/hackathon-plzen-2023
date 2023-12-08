@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
     console.log(req.body);
     const {name, surname, password_hash, birth_certificate_number} = req.body;
     const result = await pool.query(
-      'INSERT INTO users (name, surname, password_hash, birth_certificate_number) VALUES ($1, $2, $3, $4) RETURNING *',
+      'INSERT INTO users (name, surname, password_hash, birth_certificate_number, isDoctor) VALUES ($1, $2, $3, $4, false) RETURNING *',
       [userData.name,
        userData.surname,
        userData.birth_certificate_number,
