@@ -24,7 +24,11 @@
           - "/:id"    GET
           - "/:id"    PATCH
           - "/:id"    DELETE
-         
+      - "/emoji":
+          - "/"       POST
+          - "/"       GET
+          - "/:id"    GET
+          - "/:id"    DELETE
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
@@ -51,6 +55,12 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/api/v2/patient/:id"                GET<br>
 "/api/v2/patient/:id"                PATCH<br>
 "/api/v2/patient/:id"                DELETE<br>
+<br>
+"/api/v2/emoji":<br>
+"/api/v2/emoji/"                    GET<br>
+"/api/v2/emoji/:id"                 GET<br>
+"/api/v2/emoji/"    - FOR doctors   POST<br>
+"/api/v2/emoji/:id" - FOR doctors   DELETE<br>
 
 <h3>JWT token and his structure</h3>
 <hr>
@@ -169,11 +179,11 @@ Error Response | { "message": "Some text" } | ---
 <hr>
 <h4>"/api/v1/reason/", method:GET.</h4>
 
-Type | JSON |
---- | --- |
-Request | {"id": "12312"} |
-Response | { [ "id": "12312","name": "Name","description": "Description"}... ] } |
-Error Response | { "message": "Some text" } |
+Type | JSON | Headers
+--- | --- | ---
+Request | {"id": "12312"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { [ "id": "12312","name": "Name","description": "Description"}... ] } | ---
+Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/reason/", method:POST.</h4>
 
@@ -185,21 +195,63 @@ Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/reason/:id", method:GET.</h4>
 
-Type | JSON
---- | --- 
-Request | { "id": "12312"} 
-Response | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } 
-Error Response | { "message": "Some text" } 
+Type | JSON | ---
+--- | --- | ---
+Request | { "id": "12312"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a"  
+Response | { "name": "Name","description": "Description" } | --- 
+Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/reason/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "name": "Name","description": "Description" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/reason/:id", method:DELETE.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h3>Emoji</h3>
+<hr>
+<h4>"/api/v1/emoji/", method:GET.</h4>
+
+Type | JSON |
+--- | --- |
+Request | --- |
+Response | {data: [ { "id": "5321","HEX": "#1239ee", "charset": "charset"}... ] }
+Error Response | { "message": "Some text" }
+
+<h4>"/api/v1/emoji/", method:POST.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Response | { "Status": "OK" }| --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h4>"/api/v1/emoji/:id", method:GET.</h4>
+
+Type | JSON
+--- | --- 
+Request | --- 
+Response | { "id": "5321","HEX": "#1239ee", "charset": "charset" } 
+Error Response | { "message": "Some text" } 
+
+<h4>"/api/v1/emoji/:id", method:PUT.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h4>"/api/v1/emoji/:id", method:DELETE.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 

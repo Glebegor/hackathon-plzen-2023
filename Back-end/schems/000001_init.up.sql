@@ -5,7 +5,6 @@ CREATE reasons TABLE (
 );
 CREATE emoji TABLE (
     id SERIAL PRIMARY KEY,
-    image BYTEA,
     HEX VARCHAR(255) NOT NULL,
     charset VARCHAR(64) NOT NULL,
 );
