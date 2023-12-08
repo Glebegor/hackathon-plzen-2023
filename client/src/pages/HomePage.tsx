@@ -3,6 +3,7 @@ import React from 'react';
 import { DefaultLayout } from '@layouts/DefaultLayout';
 
 import { PatientBox } from '@components/blocks/PatientBox';
+import { Icon } from '@components/elements/Icon';
 
 import type { Patient } from '@utils/patient';
 
@@ -39,6 +40,7 @@ const EXAMPLE_PATIENTS: Patient[] = [
 export const HomePage: React.FC = () => (
   <DefaultLayout title="Home">
     <h1>Home</h1>
+    <Icon name="house" />
     <h2>Patients</h2>
     {EXAMPLE_PATIENTS.map((patient) => (
       <PatientBox key={patient.id} patient={patient} />
