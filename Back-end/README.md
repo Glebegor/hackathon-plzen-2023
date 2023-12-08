@@ -67,7 +67,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 JWT token looks like this:
 <code>qweioucu34ioslk1j23lkjds.dkowjrlekwjriodfslvvldkwsjqr.dsfouqweopriuoiu3oi3o2uadflsk</code>
 And has three parts: header.payload.signature<br>
-Claims of our JWT token: userId, userName, userSurname.<br>
+Claims of our JWT token: userId, userUsername, userName, userSurname.<br>
 Please, save in cookies or session storage. <br>
 Header for token: Authorization.<br> 
 
@@ -78,7 +78,7 @@ Header for token: Authorization.<br>
 
 Type | JSON 
 --- | ---
-Request | { "name": "Name","surname": "Surname", "password_hash": "123456789", "birth_certificate_number": "12312391" }
+Request | { "username": "Username", "name": "Name","surname": "Surname", "password_hash": "123456789", "birth_certificate_number": "12312391" }
 Response | { "Status": "OK" } 
 Error Response | { "message": "Some text" } 
 
@@ -86,7 +86,7 @@ Error Response | { "message": "Some text" }
 
 Type | JSON 
 --- | ---
-Request | { "name": "Name", "password_hash": "123456789" }
+Request | { "username": "Username", "password_hash": "123456789" }
 Response | { "token": "wqewqeqwr123o1kepo2k-c439eropu1j32WADISIADOUI" }
 Error Response | { "message": "Some text" } 
 

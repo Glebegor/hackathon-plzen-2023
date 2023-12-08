@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../repositories/postgres');
+const bcrypt = require('bcrypt');
 
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const Secret_key = process.env.SECRET_KEY
-function generateAccessToken(username) {
-    return jwt.sign(username, Secret_key, { expiresIn: '1800s' });
-}
+// function generateAccessToken(username) {
+//     return jwt.sign(username, Secret_key, { expiresIn: '1800s' });
+// }
 
 // Auth 
 router.post('/login', (req, res) => {
   try {
-    const {name, password_hash} = req.body;
+    const {username, password_hash} = req.body;
     const result = pool.query(
-      'SELECT * FROM users WHERE name=$1 AND password_hash=$2 RETURNING *',
-      [name, password_hash]
+      'SELECT * FROM users WHERE username=$1 AND password_hash=$2',
+      [username, password_hash]
     );
     console.log(result)
     res.json({ "Login": "ok"  });  
@@ -28,6 +28,7 @@ router.post('/login', (req, res) => {
 router.post('/register', async (req, res) => {
   const userData = {
     name: '',
+    username: '',
     surname: '',
     birth_certificate_number: '',
     date: '',
@@ -41,10 +42,10 @@ router.post('/register', async (req, res) => {
     emoji_id: ''
   };
   try {
-    const {name, surname, password_hash, birth_certificate_number} = req.body;
+    const {name, username, surname, password_hash, birth_certificate_number} = req.body;
     const result = await pool.query(
-      'INSERT INTO users (name, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, place, emoji_id) VALUES ($1, $2, $3, $4, false, null, null, null, null, null, null, null, null) RETURNING *',
-      [name, surname, password_hash, birth_certificate_number]
+      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null) RETURNING *',
+      [name, username, surname, password_hash, birth_certificate_number]
     );
     res.json({"Status": "ok"})
   } catch (error) {

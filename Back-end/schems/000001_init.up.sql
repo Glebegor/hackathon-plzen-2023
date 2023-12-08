@@ -10,6 +10,7 @@ CREATE TABLE emoji (
 );
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY,
+    username SERIAL NOT NULL,
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     password_hash VARCHAR(500) NOT NULL,
