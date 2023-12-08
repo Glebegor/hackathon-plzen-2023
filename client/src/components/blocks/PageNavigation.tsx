@@ -13,7 +13,9 @@ export const PageNavigation: React.FC = () => {
 
   return (
     <nav>
-      <h2>Page Navigation</h2>
+      <span>
+        <Icon name="user-nurse" />
+      </span>
       <ul>
         {!isLoggedIn ? (
           <React.Fragment>

@@ -10,6 +10,10 @@ export const ManagementPage: React.FC = () => (
   <DefaultLayout>
     <h1>Management</h1>
     <h2>Patients</h2>
+    <button>
+      <Icon name="plus" />
+      <span>Add a patient</span>
+    </button>
     <table border={1}>
       <thead>
         <tr>

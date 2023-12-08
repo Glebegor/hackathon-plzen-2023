@@ -8,6 +8,7 @@ export enum AppRoute {
   HOME = '/',
   LOGIN = '/login',
   MANAGEMENT = '/management',
+  PATIENT_DETAIL = '/patient',
   LOGOUT = '/logout',
   NOT_FOUND = '*',
 }
