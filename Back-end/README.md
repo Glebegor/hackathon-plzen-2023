@@ -6,8 +6,9 @@
     - /verify
 - /api/v1/
     - /notes CRUD
+    - /reasons CRUD
     - /pacient CRUD // Delete only for doctor
-    
+
 ## Config
 .env
 ```
