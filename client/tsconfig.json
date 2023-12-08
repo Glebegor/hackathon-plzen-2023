@@ -20,7 +20,11 @@
       "@pages/*": ["./src/pages/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@store/*": ["./src/store/*"],
+      "@schemas/*": ["./src/schemas/*"],
       "@utils/*": ["./src/utils/*"],
+      "@typings/*": ["./src/typings/*"],
       "@styles/*": ["./src/styles/*"]
     }
   },
