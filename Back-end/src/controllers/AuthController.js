@@ -6,8 +6,6 @@ const pool = require('../repositories/postgres');
 const Secret_key = process.env.SECRET_KEY
 const router = express.Router();
 
-
-
 // Auth 
 router.post('/login', (req, res) => {
   try {
