@@ -63,8 +63,14 @@ router.patch('/:id', async (req, res) => {
         const values = [...Object.values(req.body), req.params.id];
         
         const result = pool.query(query, values);
-        res.status(200).json({ "Status": "ok" });
-        
+        result
+        .then(result => {
+            res.status(200).json({ "Status": "ok" });
+        })
+        .catch( err => {
+            res.status(500);
+            res.json({ "message": err.message });
+        })        
     } catch (err) {
         res.status(500);
         res.json({ "message": err.message });

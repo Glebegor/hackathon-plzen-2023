@@ -13,7 +13,6 @@ router.get('/', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
-            console.log(authData)
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -42,7 +41,6 @@ router.get('/:id', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
-            console.log(authData)
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -70,7 +68,6 @@ router.patch('/:id', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
-            console.log(authData)
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -85,8 +82,14 @@ router.patch('/:id', verifyToken, async (req, res) => {
                 const values = [...Object.values(req.body), req.params.id];
                 
                 const result = pool.query(query, values);
-                res.status(200).json({ "Status": "ok" });
-                
+                result
+                .then(result => {
+                    res.status(200).json({ "Status": "ok" });
+                })
+                .catch( err => {
+                    res.status(500);
+                    res.json({ "message": err.message });
+                })
             } catch (err) {
                 res.status(500);
                 res.json({ "message": err.message });
@@ -102,7 +105,6 @@ router.delete('/:id', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
-            console.log(authData)
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {

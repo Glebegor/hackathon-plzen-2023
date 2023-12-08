@@ -7,17 +7,17 @@
     -   "/login"      POST +
 2. "/api/v1":
       - "/notes":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"       POST 
+          - "/"       GET 
+          - "/:id"    GET 
+          - "/:id"    PATCH 
+          - "/:id"    DELETE 
       - "/reasons":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"       POST 
+          - "/"       GET 
+          - "/:id"    GET 
+          - "/:id"    PATCH 
+          - "/:id"    DELETE 
       - "/patient":
           - "/"       POST +
           - "/:id"    GET +
@@ -25,10 +25,10 @@
           - "/:id"    PATCH +
           - "/:id"    DELETE +
       - "/emoji":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    DELETE +
+          - "/"       POST 
+          - "/"       GET 
+          - "/:id"    GET 
+          - "/:id"    DELETE 
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
@@ -58,7 +58,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 <br>
 "/api/v2/emoji":<br>
 "/api/v2/emoji/"                    GET<br>
-"/api/v2/emoji/:id"                 GET<br> +
+"/api/v2/emoji/:id"                 GET<br> 
 "/api/v2/emoji/"    - FOR doctors   POST<br>
 "/api/v2/emoji/:id" - FOR doctors   DELETE<br>
 
@@ -67,7 +67,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 JWT token looks like this:
 <code>qweioucu34ioslk1j23lkjds.dkowjrlekwjriodfslvvldkwsjqr.dsfouqweopriuoiu3oi3o2uadflsk</code>
 And has three parts: header.payload.signature<br>
-Claims of our JWT token: userId, userUsername, userName, userSurname.<br>
+Claims of our JWT token: userId, userUsername, userName, userSurname, userIsDoctor.<br>
 Please, save in cookies or session storage. <br>
 Header for token: Authorization.<br> 
 
