@@ -52,7 +52,7 @@ router.patch('/:id', (req, res) => {
         const values = [...Object.values(req.body), req.params.id];
         
         const result = pool.query(query, values);
-        res.status(200).json({ "Status": "OK" });
+        res.status(200).json({ "Status": "ok" });
         
     } catch (err) {
         res.status(500);
@@ -68,7 +68,7 @@ router.delete('/:id', (req, res) => {
         .then(result => {
             const {username, password_hash} = req.body;
             res.status(200);
-            res.json({"Status": "OK"});
+            res.json({"Status": "ok"});
         })
         .catch( err => {
             res.status(500);

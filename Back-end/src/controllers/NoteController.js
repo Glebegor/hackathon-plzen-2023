@@ -21,6 +21,25 @@ router.get('/', (req, res) => {
     }
 
 })
+router.post('/:id', (req, res) => {
+    try {
+        // verify
+        const [name, message] = req.body; 
+        const result = pool.query('INSERT INTO notes VALUES (name, message, id_user) SET ($1, $2, $3)', [name, message, req.params.id]);
+        result
+        .then(result => {
+            res.status(200);
+            res.json({"Status": "ok"});
+        })
+        .catch( err => {
+            res.status(500);
+            res.json({ "message": err.message });
+        })
+    } catch (err) {
+        res.status(500);
+        res.json({ "message": err.message });
+    }
+})
 router.get('/:id', (req, res) => {
     try {
         // verify
@@ -52,7 +71,7 @@ router.patch('/:id', (req, res) => {
         const values = [...Object.values(req.body), req.params.id];
         
         const result = pool.query(query, values);
-        res.status(200).json({ "Status": "OK" });
+        res.status(200).json({ "Status": "ok" });
         
     } catch (err) {
         res.status(500);

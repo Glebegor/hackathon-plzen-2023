@@ -79,7 +79,7 @@ Header for token: Authorization.<br>
 Type | JSON 
 --- | ---
 Request | { "username": "Username", "name": "Name","surname": "Surname", "password_hash": "123456789", "birth_certificate_number": "12312391" }
-Response | { "Status": "OK" } 
+Response | { "Status": "ok" } 
 Error Response | { "message": "Some text" } 
 
 <h4>"/auth/v1/login", method:POST.</h4>
@@ -105,7 +105,7 @@ Error Response | { "message": "Some text" }
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "id_user": "123", "name": "name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
-Response | { "Status": "OK" }| --- 
+Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/notes/:id", method:GET.</h4>
@@ -121,7 +121,7 @@ Error Response | { "message": "Some text" }
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/notes/:id", method:DELETE.</h4>
@@ -129,7 +129,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h3>Patient</h3>
@@ -156,7 +156,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | {"username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/patient/:id", method:DELETE.</h4>
@@ -164,7 +164,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h3>Reasones</h3>
@@ -182,7 +182,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "name": "Name","description": "Description" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
-Response | { "Status": "OK" }| --- 
+Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/reason/:id", method:GET.</h4>
@@ -198,7 +198,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "name": "Name","description": "Description" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/reason/:id", method:DELETE.</h4>
@@ -206,7 +206,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h3>Emoji</h3>
@@ -224,7 +224,7 @@ Error Response | { "message": "Some text" }
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
-Response | { "Status": "OK" }| --- 
+Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/emoji/:id", method:GET.</h4>
@@ -240,7 +240,7 @@ Error Response | { "message": "Some text" }
 Type | JSON | Headers 
 --- | --- | --- 
 Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/emoji/:id", method:DELETE.</h4>
@@ -248,7 +248,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers 
 --- | --- | --- 
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "Status": "OK" } | --- 
+Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
 ## Config
