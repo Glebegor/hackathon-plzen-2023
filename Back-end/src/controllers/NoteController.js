@@ -79,7 +79,7 @@ router.delete('/:id', async (req, res) => {
         .then(result => {
             const {username, password_hash} = req.body;
             res.status(200);
-            res.json({"Status": "OK"});
+            res.json({"Status": "ok"});
         })
         .catch( err => {
             res.status(500);

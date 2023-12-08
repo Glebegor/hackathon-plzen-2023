@@ -24,9 +24,17 @@ router.post('/', async (req, res) => {
     try {
         // verify
         const {hex, charset} = req.body; 
-        const result = pool.query('INSERT INTO emoji (HEX, charset) VALUES ($1, $2)', [hex, charset, 5]);
-        res.status(200);
-        res.json({"Status": "ok"});
+
+        const result = pool.query('INSERT INTO emoji (HEX, charset) VALUES ($1, $2)', [hex, charset]);
+        result
+        .then(result => {
+            res.status(200);
+            res.json({"Status": "ok"});
+        })
+        .catch( err => {
+            res.status(500);
+            res.json({ "message": err.message });
+        })
     } catch (err) {
         res.status(500);
         res.json({ "message": err.message });
@@ -79,7 +87,7 @@ router.delete('/:id', async (req, res) => {
         .then(result => {
             const {username, password_hash} = req.body;
             res.status(200);
-            res.json({"Status": "OK"});
+            res.json({"Status": "ok"});
         })
         .catch( err => {
             res.status(500);
