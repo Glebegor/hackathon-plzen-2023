@@ -48,7 +48,6 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/api/v2/reasons/:id"                DELETE<br>
 <br>
 "/api/v2/patient": - FOR doctors<br>
-"/api/v2/patient/"                   POST<br>
 "/api/v2/patient/:id"                GET<br>
 "/api/v2/patient/:id"                PATCH<br>
 "/api/v2/patient/:id"                DELETE<br>
