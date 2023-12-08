@@ -133,13 +133,21 @@ Error Response | { "message": "Some text" } | ---
 <h3>Patient</h3>
 <hr>
 
+<h4>"/api/v1/patient/", method:GET.</h4>
+
+Type | JSON | Headers
+--- | --- | ---
+Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | [ { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"}... ] | ---
+Error Response | { "message": "Some text" } | ---
+
 <h4>"/api/v1/patient/:id", method:GET.</h4>
 
-Type | JSON
---- | --- 
-Request | {"id": "12309123"} 
-Response | { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} 
-Error Response | { "message": "Some text" } 
+Type | JSON | Headers
+--- | --- | ---
+Request | {"id": "12309123"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} | ---
+Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/patient/:id", method:PUT.</h4>
 
@@ -150,6 +158,48 @@ Response | { "Status": "OK" } | ---
 Error Response | { "message": "Some text" } | --- 
 
 <h4>"/api/v1/patient/:id", method:DELETE.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h3>Reasones</h3>
+<hr>
+<h4>"/api/v1/reason/", method:GET.</h4>
+
+Type | JSON |
+--- | --- |
+Request | {"id": "12312"} |
+Response | { [ "id": "12312","name": "Name","description": "Description"}... ] } |
+Error Response | { "message": "Some text" } |
+
+<h4>"/api/v1/reason/", method:POST.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | { "name": "Name","description": "Description" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Response | { "Status": "OK" }| --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h4>"/api/v1/reason/:id", method:GET.</h4>
+
+Type | JSON
+--- | --- 
+Request | { "id": "12312"} 
+Response | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } 
+Error Response | { "message": "Some text" } 
+
+<h4>"/api/v1/reason/:id", method:PUT.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h4>"/api/v1/reason/:id", method:DELETE.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
