@@ -112,7 +112,7 @@ Error Response | { "message": "Some text" }
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id_user": "123", "username": "Username", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Request | { "id_user": "123", "name": "name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "OK" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -121,14 +121,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON
 --- | --- 
 Request | --- 
-Response | { "id": "5321","id_user": "123", "username": "Username", "message": "Text" } 
+Response | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } 
 Error Response | { "message": "Some text" } 
 
 <h4>"/api/v1/notes/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","id_user": "123", "username": "Username", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
