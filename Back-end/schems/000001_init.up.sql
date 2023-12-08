@@ -13,7 +13,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     password_hash VARCHAR(500) NOT NULL,
-    date TIMESTAMP,
+    date VARCHAR(255),
     birth_certificate_number VARCHAR(255) NOT NULL,
     email VARCHAR(255),
     telephone VARCHAR(255),
