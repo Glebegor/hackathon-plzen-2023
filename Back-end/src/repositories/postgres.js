@@ -1,7 +1,8 @@
 
 const { Pool } = require('pg');
 
-const config = require("../config")
+const env = require('dotenv').config();
+const config = require("../configs.js")
 const DBConfig = config["configs"]["db"]
 const pool = new Pool({
     user: DBConfig.Username,

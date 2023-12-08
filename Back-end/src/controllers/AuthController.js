@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db');
+const pool = require('../repositories/postgres');
 
 // Auth 
 router.get('/login', (req, res) => {
@@ -16,7 +16,8 @@ router.post('/register', async (req, res) => {
     console.log(data)
     res.json({})
   } catch (error) {
-    res.json({ "Register": "ok"  });
+    console.log(error.message)
+    res.json({ "message": error.message });
   }
 });
 router.get('/verify', (req, res) => {

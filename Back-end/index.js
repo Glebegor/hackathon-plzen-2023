@@ -1,7 +1,7 @@
 const express = require('express');
 
 // Configs and environments
-const config = require("./configs")
+const config = require("./src/configs")
 const env = require('dotenv').config();
 
 // DB connection
