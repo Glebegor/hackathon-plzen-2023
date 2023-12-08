@@ -9,16 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Handlers
-const authRoute = "/auth/";
-const homeController = require('./controllers/LoginController');
-app.use(authRoute + "login", homeController);
 
-const homeController = require('./controllers/RegisterController');
-app.use(authRoute + "register", homeController);
+const authRoutes = require('./src/routers/authRoutes');
+app.use('/auth', authRoutes);
 
-const homeController = require('./controllers/VerifyController');
-app.use(authRoute + "verify", homeController);
+const apiRoutes = require('./src/routers/apiRoutes');
+app.use('/api', apiRoutes);
 
 
-
-app.listen(PORT, console.log(`Listening on port: ${PORT}`));
+// Run application
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
