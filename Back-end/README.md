@@ -13,11 +13,11 @@
           - "/:id"    PATCH +
           - "/:id"    DELETE +
       - "/reasons":
-          - "/"       POST
-          - "/"       GET
-          - "/:id"    GET
-          - "/:id"    PATCH
-          - "/:id"    DELETE
+          - "/"       POST +
+          - "/"       GET +
+          - "/:id"    GET +
+          - "/:id"    PATCH +
+          - "/:id"    DELETE +
       - "/patient":
           - "/"       POST +
           - "/:id"    GET +
@@ -25,10 +25,10 @@
           - "/:id"    PATCH +
           - "/:id"    DELETE +
       - "/emoji":
-          - "/"       POST
-          - "/"       GET
-          - "/:id"    GET
-          - "/:id"    DELETE
+          - "/"       POST +
+          - "/"       GET +
+          - "/:id"    GET +
+          - "/:id"    DELETE +
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>

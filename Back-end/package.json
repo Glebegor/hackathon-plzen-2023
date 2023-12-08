@@ -8,7 +8,9 @@
     "tests": "node ./tests/tests.js",
     "migrate-up": "node ./schems/migratesup.js",
     "migrate-down": "node ./schems/migratesdown.js",
-    "create-admin": "node ./schems/createAdmin.js"
+    "create-admin": "node ./schems/createAdmin.js",
+
+    "db-docker-up-test": "docker run -e POSTGRES_PASSWORD='123321' -p 5436:5432 -d --rm postgres"
   },
   "keywords": [],
   "author": "",
