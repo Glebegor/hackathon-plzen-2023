@@ -28,15 +28,12 @@ router.post('/login', (req, res) => {
           }, 
           Secret_key, 
           (err, token) => {
+            if (err != undefined) {
+              res.status(401);
+              res.json({ "message": err.message });
+            } 
             res.status(200);
-            res.json({ "token": token });  
-            // if (err.message != undefined && err.message!= null) {
-            //   res.status(401);
-            //   res.json({ "message": err.message });
-            // } else {
-            //   res.status(200);
-            //   res.json({ "token": token });  
-            // }
+            res.json({ "token": token }); 
           }
         );
       } else {
@@ -84,13 +81,13 @@ router.post('/register', async (req, res) => {
     res.json({ "message": error.message });
   }
 });
-router.get('/verify', (req, res) => {
-  try {
+// router.get('/verify', (req, res) => {
+//   try {
 
-  } catch (error) {
-    console.log(error.message)
-    res.json({ "message": error.message });
-  }
-});
+//   } catch (error) {
+//     console.log(error.message)
+//     res.json({ "message": error.message });
+//   }
+// });
 
 module.exports = router;

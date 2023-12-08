@@ -5,7 +5,7 @@
 1. "/auth/v1":
     -   "/register"   POST
     -   "/login"      POST
-    -   "/verify"     GET    
+    <!-- -   "/verify"     GET     -->
 2. "/api/v1":
       - "/notes":
           - "/"       POST
@@ -33,7 +33,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
 "/auth/v1/login"                     POST<br>
-"/auth/v1/verify"                    GET<br>
+<!-- "/auth/v1/verify"                    GET<br> -->
 <br>
 "/api/v2":<br>
 <br>
@@ -90,13 +90,13 @@ Request | { "username": "Username", "password_hash": "123456789" }
 Response | { "token": "wqewqeqwr123o1kepo2k-c439eropu1j32WADISIADOUI" }
 Error Response | { "message": "Some text" } 
 
-<h4>"/auth/v1/verify", method:GET.</h4>
+<!-- <h4>"/auth/v1/verify", method:GET.</h4>
 
 Type | JSON 
 --- | --- 
 Request | { "token": "wqewqeqwr123o1kepo2k-c439!fpeowipoj2134WJDWADISIADOUI" }
 Response | { "status": "OK" } 
-Error Response | { "message": "Some text" } | Headers
+Error Response | { "message": "Some text" } | Headers -->
 
 <h3>Notes</h3>
 <hr>
