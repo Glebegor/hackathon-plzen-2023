@@ -10,6 +10,8 @@ import { store } from '@store/base';
 import '@styles/reset.scss';
 import '@styles/breakpoint.scss';
 import '@styles/main.scss';
+import '@styles/element.scss';
+import '@styles/animation.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
