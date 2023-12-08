@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import { HomePage } from '@pages/HomePage';
@@ -6,6 +7,8 @@ import { LoginPage } from '@pages/LoginPage';
 import { NotFoundPage } from '@pages/NotFoundPage';
 
 import { useAuth } from '@hooks/auth';
+
+import { setAuth } from '@store/slices/auth';
 
 import { AppRoute } from '@utils/route';
 
@@ -20,7 +23,22 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 }) => (condition ? <Outlet /> : <Navigate to={fallbackPath} />);
 
 export const App: React.FC = () => {
+  const dispatch = useDispatch();
   const { auth } = useAuth();
+
+  useEffect(() => {
+    const localAuth = localStorage.getItem('auth');
+    if (!localAuth) {
+      dispatch(setAuth(null));
+      return;
+    }
+    dispatch(setAuth(JSON.parse(localAuth)));
+  }, []);
+
+  if (typeof auth === 'undefined') {
+    return <p>Loading...</p>;
+  }
+
   const isLoggedIn = !!auth;
 
   return (

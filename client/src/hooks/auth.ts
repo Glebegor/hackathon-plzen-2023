@@ -1,16 +1,32 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import type { AuthInfo, AccessInfo } from '@typings/auth';
+import { setAuth } from '@store/slices/auth';
+
+import type { RootState } from '@store/base';
+import type { AccessInfo } from '@typings/auth';
+
+const EXAMPLE_AUTH = {
+  accessToken: 'a',
+  tokenType: 'a',
+  expiresIn: 0,
+};
 
 export const useAuth = () => {
-  const [auth, setAuth] = useState<AuthInfo | null | undefined>(undefined);
+  const { authInfo } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
 
-  const handleLogin = (authInfo: AccessInfo) => {};
+  const handleLogin = (authInfo: AccessInfo) => {
+    dispatch(setAuth(EXAMPLE_AUTH));
+    localStorage.setItem('auth', JSON.stringify(EXAMPLE_AUTH));
+  };
 
-  const handleRegister = (authInfo: AccessInfo) => {};
+  const handleRegister = (authInfo: AccessInfo) => {
+    dispatch(setAuth(EXAMPLE_AUTH));
+    localStorage.setItem('auth', JSON.stringify(EXAMPLE_AUTH));
+  };
 
   return {
-    auth,
+    auth: authInfo,
     handleLogin,
     handleRegister,
   };

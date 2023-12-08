@@ -15,6 +15,7 @@ export const LoginPage: React.FC = () => {
       username: values.username,
       password: values.password,
     });
+    setSubmitting(false);
   };
 
   const {
@@ -25,6 +26,7 @@ export const LoginPage: React.FC = () => {
     handleChange,
     handleBlur,
     handleSubmit,
+    setSubmitting,
   } = useFormik({
     onSubmit: onLogin,
     validationSchema: loginSchema,
