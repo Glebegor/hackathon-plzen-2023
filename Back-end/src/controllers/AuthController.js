@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const pool = require('../repositories/postgres');
+const express = require("express");
+const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
-
 require('dotenv').config();
 
+const router = express.Router();
+const pool = require('../repositories/postgres');
 const Secret_key = process.env.SECRET_KEY
+
 
 // Auth 
 router.post('/login', (req, res) => {
@@ -18,10 +19,28 @@ router.post('/login', (req, res) => {
     result
     .then(result => {
       if (result.rows.length > 0) {
-        res.status(200);
-        res.json({ "Status": "ok" });  
+        const userData = result.rows[0];
+        var token = userData;
+        jwt.sign({"userId": userData.id,
+           "userUsername": userData.username,
+           "userName": userData.name, 
+           "userSurname": userData.surname
+          }, 
+          Secret_key, 
+          (err, token) => {
+            res.status(200);
+            res.json({ "token": token });  
+            // if (err.message != undefined && err.message!= null) {
+            //   res.status(401);
+            //   res.json({ "message": err.message });
+            // } else {
+            //   res.status(200);
+            //   res.json({ "token": token });  
+            // }
+          }
+        );
       } else {
-        res.status(404);
+        res.status(401);
         res.json({ "message": "Wrong username or password" });  
       }
     })
