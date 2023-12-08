@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const pool = require('../repositories/postgres');
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
         // verify
         const result = pool.query('SELECT * FROM notes');
@@ -21,26 +21,20 @@ router.get('/', (req, res) => {
     }
 
 })
-router.post('/:id', (req, res) => {
+router.post('/', async (req, res) => {
     try {
         // verify
         const [name, message] = req.body; 
-        const result = pool.query('INSERT INTO notes VALUES (name, message, id_user) SET ($1, $2, $3)', [name, message, req.params.id]);
-        result
-        .then(result => {
-            res.status(200);
-            res.json({"Status": "ok"});
-        })
-        .catch( err => {
-            res.status(500);
-            res.json({ "message": err.message });
-        })
+        console.log(name, message)
+        const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3) RETURNING *', [name, message, 3]);
+        res.status(200);
+        res.json({"Status": "ok"});
     } catch (err) {
         res.status(500);
         res.json({ "message": err.message });
     }
 })
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         // verify
         const result = pool.query('SELECT * FROM notes WHERE id = $1', [req.params.id]);
@@ -58,7 +52,7 @@ router.get('/:id', (req, res) => {
         res.json({ "message": err.message });
     }
 })
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const updateValues = [];
         for (const key in req.body) {
@@ -79,7 +73,7 @@ router.patch('/:id', (req, res) => {
     }
 
 })
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         // verify
         const result = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);

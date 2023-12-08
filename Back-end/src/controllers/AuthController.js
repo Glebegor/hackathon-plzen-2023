@@ -7,7 +7,7 @@ const Secret_key = process.env.SECRET_KEY
 const router = express.Router();
 
 // Auth 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const {username, password_hash} = req.body;
     const result = pool.query(

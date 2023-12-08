@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const pool = require('../repositories/postgres');
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
         // verify
         const result = pool.query('SELECT * FROM users');
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     }
 
 })
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         // verify
         const result = pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
         res.json({ "message": err.message });
     }
 })
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const updateValues = [];
         for (const key in req.body) {
@@ -60,7 +60,7 @@ router.patch('/:id', (req, res) => {
     }
 
 })
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         // verify
         const result = pool.query('DELETE FROM users WHERE id = $1', [req.params.id]);
