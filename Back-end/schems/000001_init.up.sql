@@ -3,6 +3,12 @@ CREATE reasons TABLE (
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
 );
+CREATE emoji TABLE (
+    id SERIAL PRIMARY KEY,
+    image BYTEA,
+    HEX VARCHAR(255) NOT NULL,
+    charset VARCHAR(64) NOT NULL,
+);
 CREATE users TABLE ( 
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -17,6 +23,7 @@ CREATE users TABLE (
     reason_id INT REFERENCES reasons(id) ON DELETE CASCADE,
     place VARCHAR(255) NOT NULL,
     isDoctor boolean NOT NULL,
+    emoji_id INT REFERENCES emoji(id) ON DELETE CASCADE,
 );
 
 CREATE notes TABLE (
