@@ -7,11 +7,11 @@
     -   "/login"      POST +
 2. "/api/v1":
       - "/notes":
-          - "/"       POST
-          - "/"       GET
-          - "/:id"    GET
-          - "/:id"    PATCH
-          - "/:id"    DELETE
+          - "/"       POST +
+          - "/"       GET +
+          - "/:id"    GET +
+          - "/:id"    PATCH +
+          - "/:id"    DELETE +
       - "/reasons":
           - "/"       POST
           - "/"       GET
@@ -58,7 +58,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 <br>
 "/api/v2/emoji":<br>
 "/api/v2/emoji/"                    GET<br>
-"/api/v2/emoji/:id"                 GET<br>
+"/api/v2/emoji/:id"                 GET<br> +
 "/api/v2/emoji/"    - FOR doctors   POST<br>
 "/api/v2/emoji/:id" - FOR doctors   DELETE<br>
 
@@ -97,7 +97,7 @@ Error Response | { "message": "Some text" }
 Type | JSON |
 --- | --- |
 Request | --- |
-Response | {data: [{ "id": "5321","id_user": "123", "name": "Name", "message": "Text" }... ]}
+Response | [{ "id": "5321","id_user": "123", "name": "Name", "message": "Text" }... ]
 Error Response | { "message": "Some text" }
 
 <h4>"/api/v1/notes/", method:POST.</h4>
@@ -174,7 +174,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | {"id": "12312"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { [ "id": "12312", "name": "Name","description": "Description"}... ] } | ---
+Response | [ {"id": "12312", "name": "Name","description": "Description"}... ]  | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/reason/", method:POST.</h4>
@@ -216,7 +216,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON |
 --- | --- |
 Request | --- |
-Response | {data: [ { "id": "5321","HEX": "#1239ee", "charset": "charset"}... ] }
+Response | [{ "id": "5321","HEX": "#1239ee", "charset": "charset"}... ]
 Error Response | { "message": "Some text" }
 
 <h4>"/api/v1/emoji/", method:POST.</h4>

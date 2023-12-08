@@ -19,14 +19,12 @@ router.get('/', async (req, res) => {
         res.status(500);
         res.json({ "message": err.message });
     }
-
 })
 router.post('/', async (req, res) => {
     try {
         // verify
-        const [name, message] = req.body; 
-        console.log(name, message)
-        const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3) RETURNING *', [name, message, 3]);
+        const {name, message} = req.body; 
+        const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, 5]);
         res.status(200);
         res.json({"Status": "ok"});
     } catch (err) {
