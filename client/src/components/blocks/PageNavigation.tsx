@@ -10,6 +10,15 @@ export const PageNavigation: React.FC = () => (
       <li>
         <Link to={AppRoute.HOME}>Home</Link>
       </li>
+      <li>
+        <Link to={AppRoute.LOGIN}>Sign in</Link>
+      </li>
+      <li>
+        <Link to={AppRoute.REGISTER}>Sign up</Link>
+      </li>
+      <li>
+        <Link to={AppRoute.HOME}>Sign out</Link>
+      </li>
     </ul>
   </nav>
 );
