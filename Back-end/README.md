@@ -112,7 +112,7 @@ Error Response | { "message": "Some text" }
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Request | { "id_user": "123", "username": "Username", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "OK" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -121,14 +121,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON
 --- | --- 
 Request | --- 
-Response | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } 
+Response | { "id": "5321","id_user": "123", "username": "Username", "message": "Text" } 
 Error Response | { "message": "Some text" } 
 
 <h4>"/api/v1/notes/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "id": "5321","id_user": "123", "username": "Username", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -148,7 +148,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | [ { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"}... ] | ---
+Response | [ { "id": "123", "username":"Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"}... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/patient/:id", method:GET.</h4>
@@ -156,14 +156,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | {"id": "12309123"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} | ---
+Response | { "id": "123","username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/patient/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | {"name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | {"username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -182,7 +182,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | {"id": "12312"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { [ "id": "12312","name": "Name","description": "Description"}... ] } | ---
+Response | { [ "id": "12312", "name": "Name","description": "Description"}... ] } | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/reason/", method:POST.</h4>
@@ -258,6 +258,7 @@ Type | JSON | Headers
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
+
 ## Config
 .env
 ```
