@@ -1,0 +1,16 @@
+{
+  "name": "Back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "develop": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config-yml": "^0.10.3",
+    "express": "^4.18.2"
+  }
+}
