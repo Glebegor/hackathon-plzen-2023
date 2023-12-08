@@ -8,7 +8,7 @@ import { Loader } from '@components/elements/Loader';
 
 import type { Patient } from '@utils/patient';
 
-const EXAMPLE_PATIENTS: Patient[] = [
+export const EXAMPLE_PATIENTS: Patient[] = [
   {
     id: 1,
     birth_certificate_number: '123',
