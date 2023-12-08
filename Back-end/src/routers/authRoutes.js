@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// Controllers
-const ApiController = require('../controllers/AuthController');
+const AuthController = require('../controllers/AuthController');
 
-router.use('', ApiController);
+router.use('/v1', AuthController);
 
 module.exports = router;

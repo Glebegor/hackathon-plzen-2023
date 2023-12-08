@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const UserModel = require('../models/UserModel');
+const PacientModel = require('../models/PacientModel');
 
+// Notes CRUD
 router.get('/notes', (req, res) => {
-  const model = new UserModel();
-  const data = model.getAllData();
   res.json({ "Notes": "ok"  });
+});
+
+// Pacient CRUD
+router.get('/pacient', (req, res) => {
+    res.json({ "Pacient": "ok"  });
 });
 
 module.exports = router;

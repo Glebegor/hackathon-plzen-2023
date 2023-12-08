@@ -1,11 +1,13 @@
 # Back-end on CO-Hackathon 2023
 ## API
-- /auth
+- /auth/v1/
     - /register
     - /login
     - /verify
-- /api
-
+- /api/v1/
+    - /notes CRUD
+    - /pacient CRUD // Delete only for doctor
+    
 ## Config
 .env
 ```
