@@ -1,4 +1,5 @@
 const express = require('express');
+const { Pool } = require('pq');
 
 // Configs and environments
 const config = require('config-yml').load('config/configs.yml')
