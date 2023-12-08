@@ -1,11 +1,8 @@
 const express = require('express');
 
-const config = require('config-yml');
-console.log(config.app.url);
-console.log(config.app.cache);
-console.log(config.db.location);
-
+const config = require('config-yml').load('config/configs.yml')
+console.log(config)
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.listener(PORT, console.log(`Listening on port: ${PORT}`));
+app.listen(PORT, console.log(`Listening on port: ${PORT}`));
