@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { PageNavigation } from '../components/blocks/PageNavigation';
-import { PageFooter } from '../components/blocks/PageFooter';
+import { PageNavigation } from '@components/blocks/PageNavigation';
+import { PageFooter } from '@components/blocks/PageFooter';
 
 interface Props {
   children: React.ReactNode;
