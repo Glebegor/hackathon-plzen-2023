@@ -1,7 +1,9 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+
+import { Icon } from '../components/elements/Icon';
 
 import { useStyles } from '../hooks/style';
 
@@ -13,6 +15,7 @@ import type { RootStackParamList } from '../App';
 type Props = NativeStackScreenProps<RootStackParamList, 'Intro'>;
 
 export const CodeScreen: React.FC<Props> = ({ navigation }) => {
+  const [flashlightOn, setFlashlightOn] = useState<boolean>(false);
   const { appStyles } = useStyles();
 
   const onScan = (e: BarCodeReadEvent) => {
@@ -24,13 +27,24 @@ export const CodeScreen: React.FC<Props> = ({ navigation }) => {
     <SafeAreaView style={appStyles.wrapper}>
       <QRCodeScanner
         onRead={onScan}
-        flashMode={RNCamera.Constants.FlashMode.torch}
+        flashMode={
+          flashlightOn
+            ? RNCamera.Constants.FlashMode.torch
+            : RNCamera.Constants.FlashMode.off
+        }
         reactivate
-        reactivateTimeout={1000}
+        reactivateTimeout={500}
         cameraStyle={styles.cameraContainer}
         cameraContainerStyle={styles.cameraContainer}
         containerStyle={styles.cameraContainer}
+        showMarker
+        markerStyle={styles.marker}
       />
+      <View style={styles.controls}>
+        <TouchableOpacity onPress={() => setFlashlightOn((prev) => !prev)}>
+          <Icon name="bolt-lightning" style={styles.controlIcon} size={20} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -38,5 +52,18 @@ export const CodeScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   cameraContainer: {
     height: '100%',
+  },
+  marker: {
+    borderColor: '#fff',
+  },
+  controls: {
+    flexDirection: 'row',
+    position: 'absolute',
+    right: 0,
+    justifyContent: 'center',
+    padding: 24,
+  },
+  controlIcon: {
+    color: '#fff',
   },
 });
