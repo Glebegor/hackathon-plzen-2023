@@ -1,8 +1,8 @@
 PORT: 8080
 
 db:
-  name: "name"
-  username: "username"
-  host: "host"
-  port: "5436"
-  sslmode: "disabled"
+  Name: "name"
+  Username: "username"
+  Host: "host"
+  Port: "5436"
+  Sslmode: "disabled"

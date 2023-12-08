@@ -1,27 +1,25 @@
 const express = require('express');
-const { Pool } = require('pq');
 
 // Configs and environments
-const config = require('config-yml').load('config/configs.yml')
+const config = require("./configs")
 const env = require('dotenv').config();
 
-const DBConfig = config["db"]
-
+// DB connection
+const DBConfig = config["configs"]["db"]
+const { Pool } = require('pg');
 const pool = new Pool({
-    user: DBConfig["username"],
-    host: DBConfig["host"],
-    database: DBConfig["name"],
-    password: env["DB_PASSWORD"],
-    port: DBConfig["port"], 
+    user: DBConfig.Username,
+    host: DBConfig.Host,
+    database: DBConfig.Name,
+    password: env.DB_PASSWORD,
+    port: DBConfig.Port, 
 });
-console.log(pool)
 
 // Application setup
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || config["configs"]["PORT"];
 
 // Handlers
-
 const authRoutes = require('./src/routers/authRoutes');
 app.use('/auth', authRoutes);
 
