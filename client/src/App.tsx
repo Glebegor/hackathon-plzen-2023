@@ -44,7 +44,6 @@ export const App: React.FC = () => {
 
   return (
     <Routes>
-      <Route path={AppRoute.HOME} element={<HomePage />} />
       <Route
         element={
           <ProtectedRoute
@@ -63,6 +62,7 @@ export const App: React.FC = () => {
           />
         }
       >
+        <Route path={AppRoute.HOME} element={<HomePage />} />
         <Route path={AppRoute.LOOGUT} element={<LogoutPage />} />
       </Route>
       <Route path={AppRoute.NOT_FOUND} element={<NotFoundPage />} />

@@ -13,9 +13,6 @@ export const PageNavigation: React.FC = () => {
     <nav>
       <h2>Page Navigation</h2>
       <ul>
-        <li>
-          <Link to={AppRoute.HOME}>Home</Link>
-        </li>
         {!isLoggedIn ? (
           <React.Fragment>
             <li>
@@ -24,6 +21,9 @@ export const PageNavigation: React.FC = () => {
           </React.Fragment>
         ) : (
           <React.Fragment>
+            <li>
+              <Link to={AppRoute.HOME}>Home</Link>
+            </li>
             <li>
               <Link to={AppRoute.LOOGUT}>Sign out</Link>
             </li>
