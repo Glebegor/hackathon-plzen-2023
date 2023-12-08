@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const PacientModel = require('../models/PacientModel');
 
 // Auth 
 router.get('/login', (req, res) => {

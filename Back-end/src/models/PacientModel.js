@@ -8,4 +8,4 @@ class PacientModel {
   }
 }
 
-module.exports = UserModel;
+module.exports = PacientModel;

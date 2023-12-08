@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const PacientModel = require('../models/PacientModel');
 
 // Notes CRUD
 router.get('/notes', (req, res) => {

@@ -16,6 +16,8 @@ app.use('/auth', authRoutes);
 const apiRoutes = require('./src/routers/apiRoutes');
 app.use('/api', apiRoutes);
 
+const HomeRoutes = require('./src/routers/homeRoutes');
+app.use('/', HomeRoutes)
 
 // Run application
 app.listen(PORT, () => {
