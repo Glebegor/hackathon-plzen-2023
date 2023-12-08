@@ -15,6 +15,34 @@ export const useStyles = () => {
     },
     text: {
       color: '#000',
+      fontFamily: 'Montserrat-SemiBold',
+    },
+    introWrapper: {
+      flex: 1,
+      padding: 24,
+      backgroundColor: '#00a375',
+    },
+    introIcon: {
+      marginBottom: 24,
+      color: '#ffffff',
+    },
+    introText: {
+      color: '#ffffff',
+    },
+    introTitle: {
+      paddingHorizontal: 48,
+      color: '#ffffff',
+      textAlign: 'center',
+      fontFamily: 'Montserrat-Bold',
+      fontSize: 28,
+    },
+    introButton: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      padding: 12,
+      width: '100%',
+      borderRadius: 4,
+      backgroundColor: '#fff',
     },
   });
 
