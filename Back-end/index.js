@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 
 // Configs and environments
 const config = require("./src/configs")
@@ -18,6 +19,10 @@ const pool = new Pool({
 // Application setup
 const app = express();
 const PORT = process.env.PORT || config["configs"]["PORT"];
+
+// Parsers
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Handlers
 const authRoutes = require('./src/routers/authRoutes');
