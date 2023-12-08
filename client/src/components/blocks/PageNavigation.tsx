@@ -22,7 +22,7 @@ export const PageNavigation: React.FC = () => {
           </li>
         ) : (
           <li>
-            <Link to={AppRoute.HOME}>Sign out</Link>
+            <Link to={AppRoute.LOOGUT}>Sign out</Link>
           </li>
         )}
       </ul>

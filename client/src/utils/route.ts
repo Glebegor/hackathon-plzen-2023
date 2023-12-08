@@ -4,5 +4,6 @@
 export enum AppRoute {
   HOME = '/',
   LOGIN = '/login',
+  LOOGUT = '/logout',
   NOT_FOUND = '*',
 }

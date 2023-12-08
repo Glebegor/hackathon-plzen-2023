@@ -4,6 +4,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import { HomePage } from '@pages/HomePage';
 import { LoginPage } from '@pages/LoginPage';
+import { LogoutPage } from '@pages/LogoutPage';
 import { NotFoundPage } from '@pages/NotFoundPage';
 
 import { useAuth } from '@hooks/auth';
@@ -53,6 +54,16 @@ export const App: React.FC = () => {
         }
       >
         <Route path={AppRoute.LOGIN} element={<LoginPage />} />
+      </Route>
+      <Route
+        element={
+          <ProtectedRoute
+            condition={isLoggedIn}
+            fallbackPath={AppRoute.LOGIN}
+          />
+        }
+      >
+        <Route path={AppRoute.LOOGUT} element={<LogoutPage />} />
       </Route>
       <Route path={AppRoute.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
