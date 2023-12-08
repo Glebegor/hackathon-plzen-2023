@@ -3,20 +3,36 @@ import { useFormik } from 'formik';
 
 import { DefaultLayout } from '@layouts/DefaultLayout';
 
+import { useAuth } from '@hooks/auth';
+
 import { loginSchema } from '@schemas/auth';
 
 export const LoginPage: React.FC = () => {
-  const handleLogin = () => {};
+  const { handleLogin } = useAuth();
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
-    useFormik({
-      onSubmit: handleLogin,
-      validationSchema: loginSchema,
-      initialValues: {
-        username: '',
-        password: '',
-      },
+  const onLogin = () => {
+    handleLogin({
+      username: values.username,
+      password: values.password,
     });
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useFormik({
+    onSubmit: onLogin,
+    validationSchema: loginSchema,
+    initialValues: {
+      username: '',
+      password: '',
+    },
+  });
 
   return (
     <DefaultLayout>
@@ -53,7 +69,7 @@ export const LoginPage: React.FC = () => {
           <br />
         )}
         <br />
-        <input type="submit" value="Sign in" />
+        <input type="submit" value="Sign in" disabled={isSubmitting} />
       </form>
     </DefaultLayout>
   );
