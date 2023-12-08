@@ -24,10 +24,11 @@ CREATE TABLE users (
     place VARCHAR(255),
     isDoctor boolean NOT NULL,
     emoji_id INT REFERENCES emoji(id) ON DELETE CASCADE
+    note_id INT UNIQUE REFERENCES notes(id) ON DELETE SET NULL
 );
 CREATE TABLE notes (
     id SERIAL PRIMARY KEY,
-    id_user INT REFERENCES users(id),
+    id_user INT UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     message VARCHAR(255) NOT NULL
 );

@@ -3,32 +3,34 @@
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"   POST +
-    -   "/login"      POST +
+    -   "/register"    POST +
+    -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
-          - "/"       POST 
-          - "/"       GET 
-          - "/:id"    GET 
-          - "/:id"    PATCH 
-          - "/:id"    DELETE 
+          - "/"        POST 
+          - "/"        GET 
+          - "/:id"     GET 
+          - "/:id"     PATCH 
+          - "/:id"     DELETE 
+          - "/my"      GET 
       - "/reasons":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
       - "/patient":
-          - "/"       POST +
-          - "/:id"    GET +
-          - "/"       GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"        POST +
+          - "/:id"     GET +
+          - "/"        GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
+          - "/profile" POST 
       - "/emoji":
-          - "/"       POST 
-          - "/"       GET 
-          - "/:id"    GET 
-          - "/:id"    DELETE 
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     DELETE + 
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>

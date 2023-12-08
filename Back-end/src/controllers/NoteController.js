@@ -1,56 +1,88 @@
 const express = require('express');
 const router = express.Router();
 
+const verifyToken = require("../utils/jwtUtils")
+const Secret_key = process.env.SECRET_KEY
 const pool = require('../repositories/postgres');
-router.get('/', async (req, res) => {
-    try {
-        // verify
-        const result = pool.query('SELECT * FROM notes');
-        result
-        .then(result => {
-            res.status(200);
-            res.json(result.rows);
-        })
-        .catch( err => {
-            res.status(500);
+
+router.get('/', verifyToken, async (req, res) => {
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+        if (err != undefined) {
+            res.status(401);
             res.json({ "message": err.message });
-        })
-    } catch (err) {
-        res.status(500);
-        res.json({ "message": err.message });
-    }
+        } else if (authData.userIsDoctor != true) {
+            res.status(401);
+            res.json({ "message": "You don't have permission" });
+        } else {
+            try {
+                // verify
+                const result = pool.query('SELECT * FROM notes');
+                result
+                .then(result => {
+                    res.status(200);
+                    res.json(result.rows);
+                })
+                .catch( err => {
+                    res.status(500);
+                    res.json({ "message": err.message });
+                })
+            } catch (err) {
+                res.status(500);
+                res.json({ "message": err.message });
+            }
+        }
+    })
 })
-router.post('/', async (req, res) => {
-    try {
-        // verify
-        const {name, message} = req.body; 
-        const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, 5]);
-        res.status(200);
-        res.json({"Status": "ok"});
-    } catch (err) {
-        res.status(500);
-        res.json({ "message": err.message });
-    }
-})
-router.get('/:id', async (req, res) => {
-    try {
-        // verify
-        const result = pool.query('SELECT * FROM notes WHERE id = $1', [req.params.id]);
-        result
-        .then(result => {
-            res.status(200);
-            res.json(result.rows[0]);
-        })
-        .catch( err => {
-            res.status(500);
+router.post('/', verifyToken, async (req, res) => {
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+        if (err!= undefined) {
+            res.status(401);
             res.json({ "message": err.message });
-        })
-    } catch (err) {
-        res.status(500);
-        res.json({ "message": err.message });
-    }
+        } else  {
+            try {
+                // verify
+                const {name, message} = req.body; 
+                const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, authData.id]);
+                res.status(200);
+                res.json({"Status": "ok"});
+            } catch (err) {
+                res.status(500);
+                res.json({ "message": err.message });
+            }
+        }
+    })
 })
-router.patch('/:id', async (req, res) => {
+router.get('/:id', verifyToken, async (req, res) => {
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+        if (err!= undefined) {
+            res.status(401);
+            res.json({ "message": err.message });
+        } else {    
+            try {
+                const result = pool.query('SELECT * FROM notes WHERE id = $1', [req.params.id]);
+                result
+                .then(result => {
+                    if (authData.id == result.rows[0].id_user) {
+                        res.status(200);
+                        res.json(result.rows[0]);
+                    } else {
+                        res.status(401);
+                        res.json({ "message": "You don't have permission" });
+                    }
+                })
+                .catch( err => {
+                    res.status(500);
+                    res.json({ "message": err.message });
+                })
+            } catch (err) {
+                res.status(500);
+                res.json({ "message": err.message });
+            }
+        }
+    })
+
+})
+router.patch('/:id', verifyToken, async (req, res) => {
     try {
         const updateValues = [];
         for (const key in req.body) {
@@ -77,7 +109,7 @@ router.patch('/:id', async (req, res) => {
     }
 
 })
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyToken, async (req, res) => {
     try {
         // verify
         const result = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
