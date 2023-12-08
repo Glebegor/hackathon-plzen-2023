@@ -7,6 +7,7 @@ CREATE users TABLE (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(500) NOT NULL,
     date TIMESTAMP NOT NULL,
     birth_certificate_number VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -22,4 +23,5 @@ CREATE notes TABLE (
     id SERIAL PRIMARY KEY,
     id_user INT REFERENCES users(id),
     name VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL,
 );
