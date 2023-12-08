@@ -1,8 +1,0 @@
-PORT: 8080
-
-db:
-  name: "name"
-  username: "username"
-  host: "host"
-  port: "5436"
-  sslmode: "disabled"
