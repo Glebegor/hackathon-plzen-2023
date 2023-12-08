@@ -25,7 +25,6 @@ CREATE TABLE users (
     isDoctor boolean NOT NULL,
     emoji_id INT REFERENCES emoji(id) ON DELETE CASCADE
 );
-
 CREATE TABLE notes (
     id SERIAL PRIMARY KEY,
     id_user INT REFERENCES users(id),

@@ -6,9 +6,6 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const Secret_key = process.env.SECRET_KEY
-// function generateAccessToken(username) {
-//     return jwt.sign(username, Secret_key, { expiresIn: '1800s' });
-// }
 
 // Auth 
 router.post('/login', (req, res) => {
@@ -18,10 +15,25 @@ router.post('/login', (req, res) => {
       'SELECT * FROM users WHERE username=$1 AND password_hash=$2',
       [username, password_hash]
     );
-    console.log(result)
-    res.json({ "Login": "ok"  });  
+    result
+    .then(result => {
+      if (result.rows.length > 0) {
+        res.status(200);
+        res.json({ "Status": "ok" });  
+      } else {
+        res.status(404);
+        res.json({ "message": "Wrong username or password" });  
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(404);
+      res.json({ "message": error.message })
+    });
+
   } catch (error) {
     console.log(error.message)
+    res.status(505);
     res.json({ "message": error.message });
   }
 });
