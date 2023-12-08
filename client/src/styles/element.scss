@@ -1,0 +1,11 @@
+@import 'animation';
+
+.loader {
+  display: inline-block;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 2px solid #eaeaea;
+  border-bottom-color: #171717;
+  border-radius: 50%;
+  animation: 1s spin infinite linear;
+}
