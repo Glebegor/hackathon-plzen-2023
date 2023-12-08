@@ -21,7 +21,6 @@
           - "/:id"    DELETE
       - "/patient":
           - "/"       POST
-          - "/"       GET
           - "/:id"    GET
           - "/:id"    PATCH
           - "/:id"    DELETE
@@ -50,7 +49,6 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 <br>
 "/api/v2/patient": - FOR doctors<br>
 "/api/v2/patient/"                   POST<br>
-"/api/v2/patient/"                   GET<br>
 "/api/v2/patient/:id"                GET<br>
 "/api/v2/patient/:id"                PATCH<br>
 "/api/v2/patient/:id"                DELETE<br>
@@ -68,7 +66,6 @@ Header for token: Authorization.<br>
 <h3>AUTH</h3>
 <hr>
 <h4>"/auth/v1/register", method:POST.</h4>
-
 
 Type | JSON 
 --- | ---
@@ -134,7 +131,32 @@ Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a"
 Response | { "Status": "OK" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
+<h3>Patient</h3>
+<hr>
 
+<h4>"/api/v1/patient/:id", method:GET.</h4>
+
+Type | JSON
+--- | --- 
+Request | {"id": "12309123"} 
+Response | { "id": "123", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} 
+Error Response | { "message": "Some text" } 
+
+<h4>"/api/v1/patient/:id", method:PUT.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | {"name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
+
+<h4>"/api/v1/patient/:id", method:DELETE.</h4>
+
+Type | JSON | Headers 
+--- | --- | --- 
+Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Response | { "Status": "OK" } | --- 
+Error Response | { "message": "Some text" } | --- 
 ## Config
 .env
 ```
