@@ -5,6 +5,7 @@ const router = express.Router();
 const verifyToken = require("../utils/jwtUtils")
 const Secret_key = process.env.SECRET_KEY
 const pool = require('../repositories/postgres');
+
 router.get('/', async (req, res) => {
     try {
         const result = pool.query('SELECT * FROM emoji');
@@ -14,6 +15,7 @@ router.get('/', async (req, res) => {
             res.json(result.rows);
         })
         .catch( err => {
+            console.log(err.message)
             res.status(500);
             res.json({ "message": err.message });
         })
@@ -25,9 +27,11 @@ router.get('/', async (req, res) => {
 router.post('/', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
         if (err != undefined) {
+            console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
+            console.log("You don't have permission")
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -41,10 +45,12 @@ router.post('/', verifyToken, async (req, res) => {
                     res.json({"Status": "ok"});
                 })
                 .catch( err => {
+                    console.log(err.message)
                     res.status(500);
                     res.json({ "message": err.message });
                 })
             } catch (err) {
+                console.log(err.message)
                 res.status(500);
                 res.json({ "message": err.message });
             }
@@ -53,7 +59,6 @@ router.post('/', verifyToken, async (req, res) => {
 })
 router.get('/:id', async (req, res) => {
     try {
-        // verify
         const result = pool.query('SELECT * FROM emoji WHERE id = $1', [req.params.id]);
         result
         .then(result => {
@@ -61,10 +66,12 @@ router.get('/:id', async (req, res) => {
             res.json(result.rows[0]);
         })
         .catch( err => {
+            console.log(err.message)
             res.status(500);
             res.json({ "message": err.message });
         })
     } catch (err) {
+        console.log(err.message)
         res.status(500);
         res.json({ "message": err.message });
     }
@@ -72,9 +79,11 @@ router.get('/:id', async (req, res) => {
 router.patch('/:id', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
         if (err != undefined) {
+            console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
+            console.log("You don't have permission")
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -95,10 +104,12 @@ router.patch('/:id', verifyToken, async (req, res) => {
                     res.status(200).json({ "Status": "ok" });
                 })
                 .catch( err => {
+                    console.log(err.message)
                     res.status(500);
                     res.json({ "message": err.message });
                 })        
             } catch (err) {
+                console.log(err.message)
                 res.status(500);
                 res.json({ "message": err.message });
             }
@@ -108,9 +119,11 @@ router.patch('/:id', verifyToken, async (req, res) => {
 router.delete('/:id', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
         if (err != undefined) {
+            console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
+            console.log("You don't have permission")
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
@@ -124,10 +137,12 @@ router.delete('/:id', verifyToken, async (req, res) => {
                     res.json({"Status": "ok"});
                 })
                 .catch( err => {
+                    console.log(err.message)
                     res.status(500);
                     res.json({ "message": err.message });
                 })
             } catch (err) {
+                console.log(err.message)
                 res.status(500);
                 res.json({ "message": err.message });
             }

@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const verifyToken = require("../utils/jwtUtils")
@@ -11,11 +12,11 @@ router.get('/', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else if (authData.userIsDoctor != true) {
+            console.log("You don't have permission")
             res.status(401);
             res.json({ "message": "You don't have permission" });
         } else {
             try {
-                // verify
                 const result = pool.query('SELECT * FROM notes');
                 result
                 .then(result => {
@@ -36,16 +37,26 @@ router.get('/', verifyToken, async (req, res) => {
 router.post('/', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
         if (err!= undefined) {
+            console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
         } else  {
             try {
-                // verify
                 const {name, message} = req.body; 
-                const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, authData.id]);
-                res.status(200);
-                res.json({"Status": "ok"});
+                const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, authData.userId]);
+                result
+                .then(result => {
+                        res.status(200);
+                        res.json({"Status": "ok"});
+                })
+                .catch( err => {
+                    console.log(err.message)
+                    res.status(400);
+                    res.json({ "message": err.message });
+                })
+
             } catch (err) {
+                console.log(err.message)
                 res.status(500);
                 res.json({ "message": err.message });
             }
@@ -55,6 +66,7 @@ router.post('/', verifyToken, async (req, res) => {
 router.get('/:id', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
         if (err!= undefined) {
+            console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
         } else {    
@@ -62,19 +74,22 @@ router.get('/:id', verifyToken, async (req, res) => {
                 const result = pool.query('SELECT * FROM notes WHERE id = $1', [req.params.id]);
                 result
                 .then(result => {
-                    if (authData.id == result.rows[0].id_user) {
+                    if (authData.userId == result.rows[0].id_user || authData.userIsDoctor == true) {
                         res.status(200);
                         res.json(result.rows[0]);
                     } else {
+                        console.log("You don't have permission")
                         res.status(401);
                         res.json({ "message": "You don't have permission" });
                     }
                 })
                 .catch( err => {
+                    console.log(err.message)
                     res.status(500);
                     res.json({ "message": err.message });
                 })
             } catch (err) {
+                console.log(err.message)
                 res.status(500);
                 res.json({ "message": err.message });
             }
@@ -83,50 +98,92 @@ router.get('/:id', verifyToken, async (req, res) => {
 
 })
 router.patch('/:id', verifyToken, async (req, res) => {
-    try {
-        const updateValues = [];
-        for (const key in req.body) {
-            if (req.body.hasOwnProperty(key)) {
-                updateValues.push(`${key} = $${updateValues.length + 1}`);
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+        if (err!= undefined) {
+            console.log(err.message)
+            res.status(401);
+            res.json({ "message": err.message });
+        } else {    
+            
+            try {
+                const updateValues = [];
+                for (const key in req.body) {
+                    if (req.body.hasOwnProperty(key)) {
+                        updateValues.push(`${key} = $${updateValues.length + 1}`);
+                    }
+                }
+                
+                const query = `UPDATE notes SET ${updateValues.join(', ')} WHERE id = $${updateValues.length + 1} RETURNING id_user`;
+                const values = [...Object.values(req.body), req.params.id];
+                
+                const result = pool.query(query, values);
+                result
+                .then(result => {
+                    if (authData.userId == result.rows[0].id_user) {
+                        res.status(200);
+                        res.json(result.rows[0]);
+                    } else {
+                        console.log("You don't have permission")
+                        res.status(401);
+                        res.json({ "message": "You don't have permission" });
+                    }
+                })
+                .catch( err => {
+                    console.log(err.message)
+                    res.status(500);
+                    res.json({ "message": err.message });
+                })        
+            } catch (err) {
+                console.log(err.message)
+                res.status(500);
+                res.json({ "message": err.message });
             }
         }
-        
-        const query = `UPDATE notes SET ${updateValues.join(', ')} WHERE id = $${updateValues.length + 1}`;
-        const values = [...Object.values(req.body), req.params.id];
-        
-        const result = pool.query(query, values);
-        result
-        .then(result => {
-            res.status(200).json({ "Status": "ok" });
-        })
-        .catch( err => {
-            res.status(500);
-            res.json({ "message": err.message });
-        })        
-    } catch (err) {
-        res.status(500);
-        res.json({ "message": err.message });
-    }
-
+    })
 })
 router.delete('/:id', verifyToken, async (req, res) => {
-    try {
-        // verify
-        const result = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
-        result
-        .then(result => {
-            const {username, password_hash} = req.body;
-            res.status(200);
-            res.json({"Status": "ok"});
-        })
-        .catch( err => {
-            res.status(500);
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+        if (err!= undefined) {
+            console.log(err.message)
+            res.status(401);
             res.json({ "message": err.message });
-        })
-    } catch (err) {
-        res.status(500);
-        res.json({ "message": err.message });
-    }
+        } else {   
+            const result = pool.query('SELECT id_user FROM notes WHERE id = $1', [req.params.id]);
+            result
+            .then(result => {
+                if (authData.id == result.rows[0].id_user || authData.userIsDoctor == true) {
+                    try {
+                        const result = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
+                        result
+                        .then(result => {
+                            const {username, password_hash} = req.body;
+                            res.status(200);
+                            res.json({"Status": "ok"});
+                        })
+                        .catch( err => {
+                            console.log(err.message)
+                            res.status(400);
+                            res.json({ "message": err.message });
+                        })
+                    } catch (err) {
+                    console.log(err.message)
+                        res.status(500);
+                        res.json({ "message": err.message });
+                    }
+                } else {
+                    console.log("You don't have permission")
+                    res.status(401);
+                    res.json({ "message": "You don't have permission" });
+                }
+            })
+            .catch( err => {
+                console.log(err.message)
+                res.status(500);
+                res.json({ "message": err.message });
+            })
+        }
+    })
+
 })
 
 module.exports = router;
