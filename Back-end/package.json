@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "develop": "node index.js",
-    "create-admin": "node ./schems/createAdmin.js"
+    "migration-up": "node ./migrations/migratesup.js",
+    "migration-down": "node ./migrations/migratesdown.js",
+    "create-admin": "node ./migrations/createAdmin.js"
   },
   "keywords": [],
   "author": "",

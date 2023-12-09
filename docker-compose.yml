@@ -18,29 +18,16 @@ services:
     restart: always
     depends_on:
       - db-hackathon
-      - migrate
-    networks:
-      - default
-
-  migrate:
-    build:
-      context: .
-      dockerfile: ./Back-end/Dockerfile.migrate
-    depends_on:
-      - db-hackathon
-    networks:
-      - default
+  
 
   db-hackathon:
     image: postgres
     ports:
-      - '5432:5432'
+      - '5436:5432'
     container_name: db-hackathon
     restart: always
     environment:
       - "POSTGRES_PASSWORD=123321"
-    networks:
-      - default
 
 networks:
   default:

@@ -3,18 +3,26 @@
 ## Scripts
 <b>develop</b>
 <p>Running of backend</p>
-<b>tests</b>
-<p>Running of tests</p>
 <b>migrate-up</b>
 <p>Running of migrate up</p>
 <b>migrate-down</b>
 <p>Running of migrate down</p>
 <b>create-admin</b>
 <p>Running of Creating admin with claims: </p>
-
-```            
-  "name": "ADMIN-HLIB", "username": "adminMain", "surname": "ADMIN-ARSENIUK", "password_hash": "qwekj12l3kjd09123", "birth_certificate_number": "123412321312", "isDoctor": true, "date": null, "email": null, "telephone": null, "insurance_number": null, "problems": null, "reason_id": null, "notes_id": null, "place": null, "emoji_id": null
+``` 
+  "name": "ADMIN", "username": "adminMain", "surname": "ADMIN", "password_hash": "ADMINADMIN", "birth_certificate_number": "123412321312", "isDoctor": true, "date": null, "email": null, "telephone": null, "insurance_number": null, "problems": null, "reason_id": null, "notes_id": null, "place": null, "emoji_id": null
 ```
+
+
+## How to start
+```
+docker compose build
+docker compose up
+npm migrate-up
+npm craete-admin
+```
+
+
 ## API
 
 ### API lookups
@@ -93,9 +101,9 @@ Header for token: Authorization.<br>
 <hr>
 <h4>"/auth/v1/register", method:POST.</h4>
 
-Type | JSON 
---- | ---
-Request | { "username": "Username", "name": "Name","surname": "Surname", "password_hash": "123456789", "birth_certificate_number": "12312391" }
+Type | JSON | Headers
+--- | --- | ---
+Request | { "username": "Username", "name": "Name","surname": "Surname", "password_hash": "123456789", "birth_certificate_number": "12312391" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "ok" } 
 Error Response | { "message": "Some text" } 
 

@@ -1,7 +1,7 @@
 const pool = require("../src/repositories/postgres") 
 const fs = require("fs");
 
-fs.readFile("./schems/000001_init.up.sql", "utf-8", (err, query) => {
+fs.readFile("./migrations/000001_init.up.sql", "utf-8", (err, query) => {
     if (err != null || err != undefined) {
         console.log(err.message);
         return;
