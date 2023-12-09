@@ -26,10 +26,10 @@
           - "/:id"     DELETE +
           - "/profile" POST +
       - "/emoji":
-          - "/"        POST
-          - "/"        GET
-          - "/:id"     GET
-          - "/:id"     DELETE 
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     DELETE + 
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
@@ -88,7 +88,7 @@ Error Response | { "message": "Some text" }
 Type | JSON 
 --- | ---
 Request | { "username": "Username", "password_hash": "123456789" }
-Response | { "token": "wqewqeqwr123o1kepo2k-c439eropu1j32WADISIADOUI" }
+Response | { "accessToken": "213peojd21312rw@!#e213" , "tokenType": "Bearer", "expiresIn": 3600 }
 Error Response | { "message": "Some text" } 
 
 <h3>Notes</h3>

@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
               res.json({ "message": err.message });
             } 
             res.status(200);
-            res.json({ "token": token }); 
+            res.json({ "accessToken": token , "tokenType": "Bearer", "expiresIn": 3600 }); 
           }
         );
       } else {
