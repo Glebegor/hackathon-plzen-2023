@@ -38,7 +38,7 @@ router.post('/', verifyToken, async (req, res) => {
             try {
                 const {hex, charset, name} = req.body; 
         
-                const result = pool.query('INSERT INTO emoji (HEX, charset, name) VALUES ($1, $2, $3)', [hex, charset, name]);
+                const result = pool.query('INSERT INTO emoji (hex, charset, name) VALUES ($1, $2, $3)', [hex, charset, name]);
                 result
                 .then(result => {
                     res.status(200);
