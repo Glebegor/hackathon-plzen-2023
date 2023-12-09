@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Icon } from '../elements/Icon';
 
 import { useStyles } from '../../hooks/style';
 
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
+
+import type { RootStackParamList } from '../../App';
 
 interface Props {
   icon: IconName;
@@ -13,6 +17,7 @@ interface Props {
   description: string;
   backgroundColor: string;
   color: string;
+  link: keyof RootStackParamList;
 }
 
 export const MenuItem: React.FC<Props> = ({
@@ -21,11 +26,14 @@ export const MenuItem: React.FC<Props> = ({
   description,
   backgroundColor,
   color,
+  link,
 }) => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { appStyles } = useStyles();
 
   return (
-    <View style={styles.wrap}>
+    <View style={styles.wrap} onTouchStart={() => navigation.navigate(link)}>
       <View style={{ ...styles.iconBox, backgroundColor }}>
         <Icon name={icon} style={{ color }} />
       </View>
