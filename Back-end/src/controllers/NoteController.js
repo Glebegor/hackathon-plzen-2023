@@ -36,18 +36,31 @@ router.get('/', verifyToken, async (req, res) => {
 })
 router.post('/', verifyToken, async (req, res) => {
     jwt.verify(req.token, Secret_key, (err, authData) => {
-        if (err!= undefined) {
+        if (err != undefined) {
             console.log(err.message)
             res.status(401);
             res.json({ "message": err.message });
-        } else  {
+        } else {
             try {
                 const {name, message} = req.body; 
-                const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3)', [name, message, authData.userId]);
+
+                const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3) RETURNING id', [name, message, authData.userId]);
                 result
                 .then(result => {
-                        res.status(200);
-                        res.json({"Status": "ok"});
+                        const noteId = result.rows[0].id;
+                        
+                        console.log(noteId)
+                        const result2 = pool.query('UPDATE users SET reason_id=$1 WHERE id=$2', [noteId, authData.userId]);
+                        result2
+                        .then(result2 => {    
+                            res.status(200);
+                            res.json({"Status": "ok"});
+                    })
+                    .catch( err => {
+                        console.log(err.message)
+                        res.status(500);
+                        res.json({ "message": err.message });
+                    })
                 })
                 .catch( err => {
                     console.log(err.message)

@@ -76,6 +76,7 @@ router.post('/register', async (req, res) => {
       'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null) RETURNING *',
       [name, username, surname, password_hash, birth_certificate_number]
     );
+    
     res.json({"Status": "ok"})
   } catch (error) {
     console.log(error.message)
