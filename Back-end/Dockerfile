@@ -7,4 +7,5 @@ COPY package-lock.json package-lock.json
 RUN npm install
 
 COPY . .
-CMD ["node", "run develop"]
+
+CMD ["node", "index.js"]
