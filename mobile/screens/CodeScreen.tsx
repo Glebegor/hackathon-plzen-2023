@@ -12,7 +12,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import type { RootStackParamList } from '../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Intro'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Code'>;
 
 export const CodeScreen: React.FC<Props> = ({ navigation }) => {
   const [flashlightOn, setFlashlightOn] = useState<boolean>(false);

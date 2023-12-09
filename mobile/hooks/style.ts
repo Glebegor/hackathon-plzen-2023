@@ -44,6 +44,26 @@ export const useStyles = () => {
       borderRadius: 4,
       backgroundColor: '#fff',
     },
+    headerWrap: {
+      backgroundColor: '#00a375',
+    },
+    headerContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 24,
+    },
+    headerIcon: {
+      color: '#ffffff',
+    },
+    headerBottom: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      height: 16,
+      backgroundColor: '#ffffff',
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+    },
   });
 
   return {
