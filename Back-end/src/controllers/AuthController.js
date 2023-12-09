@@ -55,32 +55,32 @@ router.post('/login', async (req, res) => {
   }
 });
 router.post('/register', verifyToken, async (req, res) => {
-  jwt.verify(req.token, Secret_key, (err, authData) => {
-    if (authData.userIsDoctor == true) {
-      try {
-        const {name, username, surname, password_hash, birth_certificate_number} = req.body;
-        const result = pool.query(
-          'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
-          [name, username, surname, password_hash, birth_certificate_number]
-        )
-        result
-        .then(result => {
-          res.status(200);
-          res.json({"Status": "ok"})
-        })
-        .catch(error => {
-          console.error(error);
-          res.status(400);
-          res.json({ "message": error.message });
-        })
-      } catch (error) {
-        console.log(error.message)
-        res.status(505);
-        res.json({ "message": error.message });
+    jwt.verify(req.token, Secret_key, (err, authData) => {
+    try {
+      if (authData.userIsDoctor == true) {
+          const {name, username, surname, password_hash, birth_certificate_number} = req.body;
+          const result = pool.query(
+            'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
+            [name, username, surname, password_hash, birth_certificate_number]
+          )
+          result
+          .then(result => {
+            res.status(200);
+            res.json({"Status": "ok"})
+          })
+          .catch(error => {
+            console.error(error);
+            res.status(400);
+            res.json({ "message": error.message });
+          })
+      } else {
+        res.status(401);
+        res.json({ "message": "You don't have permission" });
       }
-    } else {
-      res.status(401);
-      res.json({ "message": "You don't have permission" });
+    } catch (error) {
+      console.log(error.message)
+      res.status(505);
+      res.json({ "message": error.message });
     }
   })
 });

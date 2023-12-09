@@ -1,14 +1,16 @@
 version: '1.0'
 services:
-  
-  # front-hackathon:
-
-  #   container_name: front-hackathon
-  #   ports: 
-  #   - '80:80'
-  #   restart: always
-  #   depends_on:
-  #     - back-hackathon
+  front-hackathon:
+    build: ./client
+    container_name: front-hackathon
+    ports: 
+    - '5173:5173'
+    restart: always
+    depends_on:
+      - back-hackathon
+      - db-hackathon
+    networks:
+      - opennet
 
   back-hackathon:
     build: ./Back-end
