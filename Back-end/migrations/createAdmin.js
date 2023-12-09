@@ -11,6 +11,3 @@ result
 .catch( err => {
     console.log(err.message);
 })
-
-// 
-// const result = pool.query("INSERT INTO users (username, name, surname, password_hash, birth_certificate_number, isDoctor) VALUES (admin, admin, admin, 'wqe123qwleko-qweedwqsc123', 0063202310, true) RETURNING *")
