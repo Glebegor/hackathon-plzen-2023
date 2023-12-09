@@ -128,7 +128,6 @@ router.delete('/:id', verifyToken, async (req, res) => {
             res.json({ "message": "You don't have permission" });
         } else {
             try {
-                // verify
                 const result = pool.query('DELETE FROM emoji WHERE id = $1', [req.params.id]);
                 result
                 .then(result => {

@@ -71,9 +71,10 @@ router.get('/:id', verifyToken, async (req, res) => {
             res.json({ "message": err.message });
         } else {    
             try {
-                const result = pool.query('SELECT * FROM notes WHERE id = $1', [req.params.id]);
+                const result = pool.query('SELECT * FROM notes WHERE id=$1', [req.params.id]);
                 result
                 .then(result => {
+                    console.log(result)
                     if (authData.userId == result.rows[0].id_user || authData.userIsDoctor == true) {
                         res.status(200);
                         res.json(result.rows[0]);
