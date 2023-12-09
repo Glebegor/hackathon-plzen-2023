@@ -64,6 +64,20 @@ export const useStyles = () => {
       borderTopLeftRadius: 16,
       borderTopRightRadius: 16,
     },
+    backButton: {
+      position: 'absolute',
+      right: 24,
+      bottom: 24,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 48,
+      height: 48,
+      backgroundColor: '#00a375',
+      borderRadius: 24,
+    },
+    backIcon: {
+      color: '#fff',
+    },
   });
 
   return {
