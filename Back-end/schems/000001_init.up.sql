@@ -8,6 +8,11 @@ CREATE TABLE emoji (
     HEX VARCHAR(255) NOT NULL,
     charset VARCHAR(64) NOT NULL UNIQUE
 );
+CREATE TABLE notes (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL
+);
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
@@ -21,13 +26,8 @@ CREATE TABLE users (
     insurance_number VARCHAR,
     problems VARCHAR(255),
     reason_id INT REFERENCES reasons(id) ON DELETE CASCADE,
+    notes_id INT REFERENCES notes(id) ON DELETE CASCADE,
     place VARCHAR(255),
     isDoctor boolean NOT NULL,
     emoji_id INT REFERENCES emoji(id) ON DELETE CASCADE
-);
-CREATE TABLE notes (
-    id SERIAL PRIMARY KEY,
-    id_user INT UNIQUE REFERENCES users(id) ON DELETE CASCADE,
-    name VARCHAR(255) NOT NULL,
-    message VARCHAR(255) NOT NULL
 );

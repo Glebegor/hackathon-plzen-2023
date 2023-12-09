@@ -47,14 +47,12 @@ router.post('/', verifyToken, async (req, res) => {
                 const result = pool.query('INSERT INTO notes (name, message, id_user) VALUES ($1, $2, $3) RETURNING id', [name, message, authData.userId]);
                 result
                 .then(result => {
-                        const noteId = result.rows[0].id;
-                        
-                        console.log(noteId)
-                        const result2 = pool.query('UPDATE users SET reason_id=$1 WHERE id=$2', [noteId, authData.userId]);
-                        result2
-                        .then(result2 => {    
-                            res.status(200);
-                            res.json({"Status": "ok"});
+                    const noteId = result.rows[0].id;
+                    const result2 = pool.query('UPDATE users SET id_notes = $1 WHERE id = $2', [noteId, authData.userId]);
+                    result2
+                    .then(result2 => {    
+                        res.status(200);
+                        res.json({"Status": "ok"});
                     })
                     .catch( err => {
                         console.log(err.message)
@@ -167,10 +165,10 @@ router.delete('/:id', verifyToken, async (req, res) => {
             .then(result => {
                 if (authData.id == result.rows[0].id_user || authData.userIsDoctor == true) {
                     try {
-                        const result = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
-                        result
+                        const result2 = pool.query('UPDATE users SET reason_id=null WHERE id=$1', [req.params.id]);
+                        result2
                         .then(result => {
-                            const {username, password_hash} = req.body;
+                            const result3 = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
                             res.status(200);
                             res.json({"Status": "ok"});
                         })

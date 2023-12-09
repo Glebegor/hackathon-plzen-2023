@@ -67,13 +67,14 @@ router.post('/register', async (req, res) => {
     problems: '',
     reason_id: '',
     place: '',
+    notes_id: '',
     isDoctor: '',
     emoji_id: ''
   };
   try {
     const {name, username, surname, password_hash, birth_certificate_number} = req.body;
     const result = await pool.query(
-      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null) RETURNING *',
+      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
       [name, username, surname, password_hash, birth_certificate_number]
     );
     
