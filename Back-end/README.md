@@ -283,10 +283,11 @@ POSTGRES_PASSWORD="password"
 SECRET_KEY="secret"
 ```
 
+
 configs/yml
 ```
-PORT: port
 
+PORT: port
 db:
   name: "name"
   username: "username"
