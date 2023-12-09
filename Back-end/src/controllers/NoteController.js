@@ -28,7 +28,7 @@ router.get('/', verifyToken, async (req, res) => {
                     res.json({ "message": err.message });
                 })
             } catch (err) {
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -68,13 +68,13 @@ router.post('/', verifyToken, async (req, res) => {
                     })
                     .catch( err => {
                         console.log(err.message)
-                        res.status(400);
+                        res.status(500);
                         res.json({ "message": err.message });
                     })
                 })
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -108,7 +108,7 @@ router.get('/:id', verifyToken, async (req, res) => {
                 })
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -161,7 +161,7 @@ router.patch('/:id', verifyToken, async (req, res) => {
                 })        
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -210,8 +210,6 @@ router.delete('/:id', verifyToken, async (req, res) => {
                     res.json({ "message": "You don't have permission" });
                 }
             })
-
-            
         }
     })
 })

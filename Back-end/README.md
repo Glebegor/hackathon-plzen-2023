@@ -19,7 +19,7 @@
 docker compose build
 docker compose up
 npm migrate-up
-npm craete-admin
+npm create-admin
 ```
 
 
@@ -27,8 +27,8 @@ npm craete-admin
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"    POST 
-    -   "/login"       POST 
+    -   "/register"    POST +
+    -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
           - "/"        POST  
@@ -50,10 +50,10 @@ npm craete-admin
           - "/:id"     DELETE 
           - "/profile" POST 
       - "/emoji":
-          - "/"        POST 
-          - "/"        GET 
-          - "/:id"     GET 
-          - "/:id"     DELETE  
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     DELETE +
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
@@ -241,14 +241,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON |
 --- | --- |
 Request | --- |
-Response | [{ "id": "5321","HEX": "#1239ee", "charset": "charset"}... ]
+Response | [{ "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" }... ]
 Error Response | { "message": "Some text" }
 
 <h4>"/api/v1/emoji/", method:POST.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name"  } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -257,14 +257,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON
 --- | --- 
 Request | --- 
-Response | { "id": "5321","HEX": "#1239ee", "charset": "charset" } 
+Response | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" } 
 Error Response | { "message": "Some text" } 
 
 <h4>"/api/v1/emoji/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -283,10 +283,11 @@ POSTGRES_PASSWORD="password"
 SECRET_KEY="secret"
 ```
 
+
 configs/yml
 ```
-PORT: port
 
+PORT: port
 db:
   name: "name"
   username: "username"

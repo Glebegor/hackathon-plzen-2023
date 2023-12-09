@@ -18,7 +18,8 @@ services:
     restart: always
     depends_on:
       - db-hackathon
-  
+    networks:
+      - opennet
 
   db-hackathon:
     image: postgres
@@ -28,6 +29,8 @@ services:
     restart: always
     environment:
       - "POSTGRES_PASSWORD=123321"
+    networks:
+      - opennet
 
 networks:
-  default:
+  opennet:

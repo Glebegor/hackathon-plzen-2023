@@ -36,9 +36,9 @@ router.post('/', verifyToken, async (req, res) => {
             res.json({ "message": "You don't have permission" });
         } else {
             try {
-                const {hex, charset} = req.body; 
+                const {hex, charset, name} = req.body; 
         
-                const result = pool.query('INSERT INTO emoji (HEX, charset) VALUES ($1, $2)', [hex, charset]);
+                const result = pool.query('INSERT INTO emoji (hex, charset, name) VALUES ($1, $2, $3)', [hex, charset, name]);
                 result
                 .then(result => {
                     res.status(200);
@@ -51,7 +51,7 @@ router.post('/', verifyToken, async (req, res) => {
                 })
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -72,7 +72,7 @@ router.get('/:id', async (req, res) => {
         })
     } catch (err) {
         console.log(err.message)
-        res.status(500);
+        res.status(400);
         res.json({ "message": err.message });
     }
 })
@@ -110,7 +110,7 @@ router.patch('/:id', verifyToken, async (req, res) => {
                 })        
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -142,7 +142,7 @@ router.delete('/:id', verifyToken, async (req, res) => {
                 })
             } catch (err) {
                 console.log(err.message)
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }

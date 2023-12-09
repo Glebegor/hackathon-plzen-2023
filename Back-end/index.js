@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+var cors = require('cors')
 
 // Configs and environments
 const config = require("./src/configs")
@@ -18,6 +19,7 @@ const pool = new Pool({
 
 // Application setup
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || config["configs"]["PORT"];
 
 // Parsers
