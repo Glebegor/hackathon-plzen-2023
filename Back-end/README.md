@@ -3,32 +3,33 @@
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"   POST +
-    -   "/login"      POST +
+    -   "/register"    POST +
+    -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"        POST + 
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     PATCH +  
+          - "/:id"     DELETE +
       - "/reasons":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
       - "/patient":
-          - "/"       POST +
-          - "/:id"    GET +
-          - "/"       GET +
-          - "/:id"    PATCH +
-          - "/:id"    DELETE +
+          - "/"        POST +
+          - "/:id"     GET +
+          - "/"        GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
+          - "/profile" POST +
       - "/emoji":
-          - "/"       POST +
-          - "/"       GET +
-          - "/:id"    GET +
-          - "/:id"    DELETE +
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     DELETE + 
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
@@ -58,7 +59,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 <br>
 "/api/v2/emoji":<br>
 "/api/v2/emoji/"                    GET<br>
-"/api/v2/emoji/:id"                 GET<br> +
+"/api/v2/emoji/:id"                 GET<br> 
 "/api/v2/emoji/"    - FOR doctors   POST<br>
 "/api/v2/emoji/:id" - FOR doctors   DELETE<br>
 
@@ -67,7 +68,7 @@ Or you can see it in this format(Handler is realizated if has "+" on the right s
 JWT token looks like this:
 <code>qweioucu34ioslk1j23lkjds.dkowjrlekwjriodfslvvldkwsjqr.dsfouqweopriuoiu3oi3o2uadflsk</code>
 And has three parts: header.payload.signature<br>
-Claims of our JWT token: userId, userUsername, userName, userSurname.<br>
+Claims of our JWT token: userId, userUsername, userName, userSurname, userIsDoctor.<br>
 Please, save in cookies or session storage. <br>
 Header for token: Authorization.<br> 
 
@@ -87,7 +88,7 @@ Error Response | { "message": "Some text" }
 Type | JSON 
 --- | ---
 Request | { "username": "Username", "password_hash": "123456789" }
-Response | { "token": "wqewqeqwr123o1kepo2k-c439eropu1j32WADISIADOUI" }
+Response | { "accessToken": "213peojd21312rw@!#e213" , "tokenType": "Bearer", "expiresIn": 3600 }
 Error Response | { "message": "Some text" } 
 
 <h3>Notes</h3>
@@ -104,7 +105,7 @@ Error Response | { "message": "Some text" }
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id_user": "123", "name": "name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Request | { "id":"1235123" ,"id_user": "123", "name": "name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -120,7 +121,7 @@ Error Response | { "message": "Some text" }
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "id_user": "123", "name": "Name", "message": "Text" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -140,7 +141,7 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | --- | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | [ { "id": "123", "username":"Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"}... ] | ---
+Response | [ { "id": "123", "username":"Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "notes_id":"1232412", "place": "12304", "emoji_id": "123123" }... ] | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/patient/:id", method:GET.</h4>
@@ -148,14 +149,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON | Headers
 --- | --- | ---
 Request | {"id": "12309123"} | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
-Response | { "id": "123","username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304"} | ---
+Response | { "id": "123","username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "notes_id":"1232412", "place": "12304", "emoji_id": "123123" } | ---
 Error Response | { "message": "Some text" } | ---
 
 <h4>"/api/v1/patient/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | {"username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134", "place": "12304" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | {"username": "Username", "name": "Name", "surname": "Surname", "date": "11-12-2023", "birth_certificate_number": "123412", "email": "email@example.com", "telephone": "+42031490812", "insurance_number": "5231456", "problems": "problems", "reason_id": "52134","notes_id":"1232412", "place": "12304", "emoji_id": "123123" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 

@@ -18,11 +18,13 @@ router.post('/login', async (req, res) => {
     .then(result => {
       if (result.rows.length > 0) {
         const userData = result.rows[0];
+        console.log(userData)
         var token = userData;
         jwt.sign({"userId": userData.id,
            "userUsername": userData.username,
            "userName": userData.name, 
-           "userSurname": userData.surname
+           "userSurname": userData.surname,
+           "userIsDoctor": userData.isdoctor,
           }, 
           Secret_key, 
           { expiresIn: '3600s' },
@@ -32,7 +34,7 @@ router.post('/login', async (req, res) => {
               res.json({ "message": err.message });
             } 
             res.status(200);
-            res.json({ "token": token }); 
+            res.json({ "accessToken": token , "tokenType": "Bearer", "expiresIn": 3600 }); 
           }
         );
       } else {
@@ -65,15 +67,17 @@ router.post('/register', async (req, res) => {
     problems: '',
     reason_id: '',
     place: '',
+    notes_id: '',
     isDoctor: '',
     emoji_id: ''
   };
   try {
     const {name, username, surname, password_hash, birth_certificate_number} = req.body;
     const result = await pool.query(
-      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null) RETURNING *',
+      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
       [name, username, surname, password_hash, birth_certificate_number]
     );
+    
     res.json({"Status": "ok"})
   } catch (error) {
     console.log(error.message)
