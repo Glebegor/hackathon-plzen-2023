@@ -1,5 +1,8 @@
 # Back-end on CO-Hackathon 2023
 
+## Stack of technologies
+<p>We use standart PERN stack, so on the back-end uses postgres, express.js and node.js. MVC architecture included. You can also load project by docker compose.</p>
+
 ## Scripts
 <b>develop</b>
 <p>Running of backend</p>
@@ -16,12 +19,15 @@
 
 ## How to start
 ```
+npm run develop
+```
+OR 
+```
 docker compose build
 docker compose up
 npm migrate-up
 npm create-admin
 ```
-
 
 ## API
 
