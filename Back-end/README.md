@@ -13,11 +13,11 @@
           - "/:id"     PATCH +  
           - "/:id"     DELETE +
       - "/reasons":
-          - "/"        POST 
-          - "/"        GET 
-          - "/:id"     GET 
-          - "/:id"     PATCH 
-          - "/:id"     DELETE 
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
       - "/patient":
           - "/"        POST +
           - "/:id"     GET +
