@@ -44,28 +44,34 @@ router.post('/', verifyToken, async (req, res) => {
             try {
                 const {name, message} = req.body; 
 
-                const result = pool.query('INSERT INTO notes (name, message, checked) VALUES ($1, $2, false) RETURNING id', [name, message]);
+                const result = pool.query('SELECT notes_id FROM users WHERE id=$1;', [authData.userId]);
                 result
                 .then(result => {
-                    const noteId = result.rows[0].id;
-                    const result2 = pool.query('UPDATE users SET notes_id = $1 WHERE id = $2', [noteId, authData.userId]);
+                    pool.query('UPDATE users SET notes_id = null WHERE id = $1', [authData.userId]);
+                    pool.query('DELETE FROM notes WHERE id = $1', [result.rows[0].notes_id]);
+                    
+                    const result2 = pool.query('INSERT INTO notes (name, message, checked) VALUES ($1, $2, false) RETURNING id', [name, message]);
                     result2
-                    .then(result2 => {    
-                        res.status(200);
-                        res.json({"Status": "ok"});
+                    .then(result => {
+                        const noteId = result.rows[0].id;
+                        const result3 = pool.query('UPDATE users SET notes_id = $1 WHERE id = $2', [noteId, authData.userId]);
+                        result3
+                        .then(result => {    
+                            res.status(200);
+                            res.json({"Status": "ok"});
+                        })
+                        .catch( err => {
+                            console.log(err.message)
+                            res.status(500);
+                            res.json({ "message": err.message });
+                        })
                     })
                     .catch( err => {
                         console.log(err.message)
-                        res.status(500);
+                        res.status(400);
                         res.json({ "message": err.message });
                     })
                 })
-                .catch( err => {
-                    console.log(err.message)
-                    res.status(400);
-                    res.json({ "message": err.message });
-                })
-
             } catch (err) {
                 console.log(err.message)
                 res.status(500);
