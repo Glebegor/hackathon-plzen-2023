@@ -11,7 +11,8 @@ CREATE TABLE emoji (
 CREATE TABLE notes (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    message VARCHAR(255) NOT NULL
+    message VARCHAR(255) NOT NULL,
+    checked boolean NOT NULL
 );
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY,

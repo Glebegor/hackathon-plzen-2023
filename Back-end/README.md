@@ -3,14 +3,14 @@
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"    POST 
-    -   "/login"       POST 
+    -   "/register"    POST +
+    -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
-          - "/"        POST 
-          - "/"        GET 
-          - "/:id"     GET 
-          - "/:id"     PATCH 
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     PATCH     
           - "/:id"     DELETE 
           - "/my"      GET 
       - "/reasons":
@@ -20,12 +20,12 @@
           - "/:id"     PATCH 
           - "/:id"     DELETE 
       - "/patient":
-          - "/"        POST 
-          - "/:id"     GET 
-          - "/"        GET 
-          - "/:id"     PATCH 
-          - "/:id"     DELETE 
-          - "/profile" POST 
+          - "/"        POST +
+          - "/:id"     GET +
+          - "/"        GET +
+          - "/:id"     PATCH +
+          - "/:id"     DELETE +
+          - "/profile" POST +
       - "/emoji":
           - "/"        POST
           - "/"        GET
