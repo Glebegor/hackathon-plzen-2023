@@ -241,14 +241,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON |
 --- | --- |
 Request | --- |
-Response | [{ "id": "5321","HEX": "#1239ee", "charset": "charset"}... ]
+Response | [{ "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" }... ]
 Error Response | { "message": "Some text" }
 
 <h4>"/api/v1/emoji/", method:POST.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name"  } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI123!sf09a" 
 Response | { "Status": "ok" }| --- 
 Error Response | { "message": "Some text" } | --- 
 
@@ -257,14 +257,14 @@ Error Response | { "message": "Some text" } | ---
 Type | JSON
 --- | --- 
 Request | --- 
-Response | { "id": "5321","HEX": "#1239ee", "charset": "charset" } 
+Response | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" } 
 Error Response | { "message": "Some text" } 
 
 <h4>"/api/v1/emoji/:id", method:PUT.</h4>
 
 Type | JSON | Headers 
 --- | --- | --- 
-Request | { "id": "5321","HEX": "#1239ee", "charset": "charset" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
+Request | { "id": "5321","HEX": "#1239ee", "charset": "charset", "name": "name" } | Authorization: "Bearer tokenqw.qweqweqe.qwesaid0@OI#U!sf09a" 
 Response | { "Status": "ok" } | --- 
 Error Response | { "message": "Some text" } | --- 
 

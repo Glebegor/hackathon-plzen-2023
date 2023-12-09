@@ -19,7 +19,6 @@ router.post('/login', async (req, res) => {
     .then(result => {
       if (result.rows.length > 0) {
         const userData = result.rows[0];
-        console.log(userData)
         var token = userData;
         jwt.sign({"userId": userData.id,
            "userUsername": userData.username,

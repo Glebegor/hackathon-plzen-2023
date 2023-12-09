@@ -36,9 +36,9 @@ router.post('/', verifyToken, async (req, res) => {
             res.json({ "message": "You don't have permission" });
         } else {
             try {
-                const {hex, charset} = req.body; 
+                const {hex, charset, name} = req.body; 
         
-                const result = pool.query('INSERT INTO emoji (HEX, charset) VALUES ($1, $2)', [hex, charset]);
+                const result = pool.query('INSERT INTO emoji (HEX, charset, name) VALUES ($1, $2, $3)', [hex, charset, name]);
                 result
                 .then(result => {
                     res.status(200);

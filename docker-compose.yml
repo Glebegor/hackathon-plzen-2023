@@ -14,20 +14,23 @@ services:
     build: ./Back-end
     container_name: back-hackathon
     ports: 
-    - '8080:8080'
+    - '9777:8080'
     restart: always
     depends_on:
       - db-hackathon
-  
+    networks:
+      - opennet
 
   db-hackathon:
     image: postgres
     ports:
-      - '5436:5432'
+      - '5555:5432'
     container_name: db-hackathon
     restart: always
     environment:
       - "POSTGRES_PASSWORD=123321"
+    networks:
+      - opennet
 
 networks:
-  default:
+  opennet:
