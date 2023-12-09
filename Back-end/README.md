@@ -1,35 +1,51 @@
 # Back-end on CO-Hackathon 2023
+
+## Scripts
+<b>develop</b>
+<p>Running of backend</p>
+<b>tests</b>
+<p>Running of tests</p>
+<b>migrate-up</b>
+<p>Running of migrate up</p>
+<b>migrate-down</b>
+<p>Running of migrate down</p>
+<b>create-admin</b>
+<p>Running of Creating admin with claims: </p>
+
+```            
+  "name": "ADMIN-HLIB", "username": "adminMain", "surname": "ADMIN-ARSENIUK", "password_hash": "qwekj12l3kjd09123", "birth_certificate_number": "123412321312", "isDoctor": true, "date": null, "email": null, "telephone": null, "insurance_number": null, "problems": null, "reason_id": null, "notes_id": null, "place": null, "emoji_id": null
+```
 ## API
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"    POST +
-    -   "/login"       POST +
+    -   "/register"    POST 
+    -   "/login"       POST 
 2. "/api/v1":
       - "/notes":
-          - "/"        POST + 
-          - "/"        GET +
-          - "/:id"     GET +
-          - "/:id"     PATCH +  
-          - "/:id"     DELETE +
+          - "/"        POST  
+          - "/"        GET 
+          - "/:id"     GET 
+          - "/:id"     PATCH   
+          - "/:id"     DELETE 
       - "/reasons":
-          - "/"        POST +
-          - "/"        GET +
-          - "/:id"     GET +
-          - "/:id"     PATCH +
-          - "/:id"     DELETE +
+          - "/"        POST 
+          - "/"        GET 
+          - "/:id"     GET 
+          - "/:id"     PATCH 
+          - "/:id"     DELETE 
       - "/patient":
-          - "/"        POST +
-          - "/:id"     GET +
-          - "/"        GET +
-          - "/:id"     PATCH +
-          - "/:id"     DELETE +
-          - "/profile" POST +
+          - "/"        POST 
+          - "/:id"     GET 
+          - "/"        GET 
+          - "/:id"     PATCH 
+          - "/:id"     DELETE 
+          - "/profile" POST 
       - "/emoji":
-          - "/"        POST +
-          - "/"        GET +
-          - "/:id"     GET +
-          - "/:id"     DELETE + 
+          - "/"        POST 
+          - "/"        GET 
+          - "/:id"     GET 
+          - "/:id"     DELETE  
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>
