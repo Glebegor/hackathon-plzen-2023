@@ -5,6 +5,7 @@ require('dotenv').config();
 const pool = require('../repositories/postgres');
 const Secret_key = process.env.SECRET_KEY
 const router = express.Router();
+const verifyToken = require("../utils/jwtUtils")
 
 // Auth 
 router.post('/login', async (req, res) => {
@@ -54,35 +55,50 @@ router.post('/login', async (req, res) => {
     res.json({ "message": error.message });
   }
 });
-router.post('/register', async (req, res) => {
-  const userData = {
-    name: '',
-    username: '',
-    surname: '',
-    birth_certificate_number: '',
-    date: '',
-    email: '',
-    telephone: '',
-    insurance_number: '',
-    problems: '',
-    reason_id: '',
-    place: '',
-    notes_id: '',
-    isDoctor: '',
-    emoji_id: ''
-  };
-  try {
-    const {name, username, surname, password_hash, birth_certificate_number} = req.body;
-    const result = await pool.query(
-      'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
-      [name, username, surname, password_hash, birth_certificate_number]
-    );
-    
-    res.json({"Status": "ok"})
-  } catch (error) {
-    console.log(error.message)
-    res.json({ "message": error.message });
-  }
+router.post('/register', verifyToken, async (req, res) => {
+  jwt.verify(req.token, Secret_key, (err, authData) => {
+    if (authData.userIsDoctor == true) {
+      const userData = {
+        name: '',
+        username: '',
+        surname: '',
+        birth_certificate_number: '',
+        date: '',
+        email: '',
+        telephone: '',
+        insurance_number: '',
+        problems: '',
+        reason_id: '',
+        place: '',
+        notes_id: '',
+        isDoctor: '',
+        emoji_id: ''
+      };
+      try {
+        const {name, username, surname, password_hash, birth_certificate_number} = req.body;
+        const result = pool.query(
+          'INSERT INTO users (name, username, surname, password_hash, birth_certificate_number, isDoctor, date, email, telephone, insurance_number, problems, reason_id, notes_id, place, emoji_id) VALUES ($1, $2, $3, $4, $5,false, null, null, null, null, null, null, null, null, null) RETURNING *',
+          [name, username, surname, password_hash, birth_certificate_number]
+        )
+        result
+        .then(result => {
+          res.status(200);
+          res.json({"Status": "ok"})
+        })
+        .catch(error => {
+          console.error(error);
+          res.status(401);
+          res.json({ "message": error.message });
+        })
+      } catch (error) {
+        console.log(error.message)
+        res.json({ "message": error.message });
+      }
+    } else {
+      res.status(401);
+      res.json({ "message": "You don't have permission" });
+    }
+  })
 });
 
 module.exports = router;

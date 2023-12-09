@@ -1,14 +1,14 @@
 version: '1.0'
 services:
   
-  front-hackathon:
+  # front-hackathon:
 
-    container_name: front-hackathon
-    ports: 
-    - '80:80'
-    restart: always
-    depends_on:
-      - back-hackathon
+  #   container_name: front-hackathon
+  #   ports: 
+  #   - '80:80'
+  #   restart: always
+  #   depends_on:
+  #     - back-hackathon
 
   back-hackathon:
     build: ./Back-end
@@ -18,12 +18,16 @@ services:
     restart: always
     depends_on:
       - db-hackathon
+  
 
   db-hackathon:
     image: postgres
     ports:
-      -'5436:5432'
+      - '5436:5432'
     container_name: db-hackathon
     restart: always
     environment:
       - "POSTGRES_PASSWORD=123321"
+
+networks:
+  default:

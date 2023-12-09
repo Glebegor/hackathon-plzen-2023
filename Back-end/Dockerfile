@@ -1,4 +1,5 @@
 FROM node
+
 WORKDIR ./
 
 COPY package.json package.json
