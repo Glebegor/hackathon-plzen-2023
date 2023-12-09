@@ -56,7 +56,7 @@ router.get('/:id', verifyToken, async (req, res) => {
                     res.json({ "message": err.message });
                 })
             } catch (err) {
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -91,7 +91,7 @@ router.patch('/:id', verifyToken, async (req, res) => {
                     res.json({ "message": err.message });
                 })
             } catch (err) {
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
@@ -122,7 +122,7 @@ router.delete('/:id', verifyToken, async (req, res) => {
                     res.json({ "message": err.message });
                 })
             } catch (err) {
-                res.status(500);
+                res.status(400);
                 res.json({ "message": err.message });
             }
         }
