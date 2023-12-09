@@ -124,28 +124,29 @@ router.patch('/:id', verifyToken, async (req, res) => {
                         updateValues.push(`${key} = $${updateValues.length + 1}`);
                     }
                 }
-                
-                const query = `UPDATE notes SET ${updateValues.join(', ')} WHERE id = $${updateValues.length + 1} RETURNING *`;
-                const values = [...Object.values(req.body), req.params.id];
-                
-                const result = pool.query(query, values);
+                const query = `SELECT * FROM users WHERE notes_id=$1`                
+                const result = pool.query(query, [req.params.id]);
                 result
                 .then(result => {
-                    .then(result => {2
-                        if (authData.userId == result2.rows[0].id_user) {
+                    if (result.rows[0].id == authData.userId) {
+                        const query2 = `UPDATE notes SET ${updateValues.join(', ')} WHERE id = $${updateValues.length + 1} RETURNING *`;
+                        const values = [...Object.values(req.body), req.params.id];
+                        const result2 = pool.query(query2, values);
+                        result2
+                        .then(result => {
                             res.status(200);
                             res.json({"Status": "ok"});
-                        } else {
-                            console.log("You don't have permission")
-                            res.status(401);
-                            res.json({ "message": "You don't have permission" });
-                        }
-                    })
-                    .catch( err => {
-                        console.log(err.message)
-                        res.status(500);
-                        res.json({ "message": err.message });
-                    })  
+                        })
+                        .catch( err => {
+                            console.log(err.message)
+                            res.status(500);
+                            res.json({ "message": err.message });
+                        })
+                    }else {
+                        console.log("You don't have permission")
+                        res.status(401);
+                        res.json({ "message": "You don't have permission" });
+                    }
                 })
                 .catch( err => {
                     console.log(err.message)
@@ -167,38 +168,44 @@ router.delete('/:id', verifyToken, async (req, res) => {
             res.status(401);
             res.json({ "message": err.message });
         } else {   
-            if (authData.id == result.rows[0].id_user || authData.userIsDoctor == true) {
-                try {
-                    const result = pool.query('UPDATE users SET notes_id=null WHERE notes_id=$1', [req.params.id]);
-                    result
-                    .then(result => {
-                        const result2 = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
+            const result = pool.query(`SELECT * FROM users WHERE notes_id=$1`, [req.params.id])                
+            result
+            .then(result => {
+                if (authData.id == result.rows[0].id || authData.userIsDoctor == true) {
+                    try {
+                        const result2 = pool.query('UPDATE users SET notes_id=null WHERE notes_id=$1', [req.params.id]);
                         result2
                         .then(result => {
-                            res.status(200);
-                            res.json({"Status": "ok"});
+                            const result2 = pool.query('DELETE FROM notes WHERE id = $1', [req.params.id]);
+                            result2
+                            .then(result => {
+                                res.status(200);
+                                res.json({"Status": "ok"});
+                            })
+                            .catch( err => {
+                                console.log(err.message)
+                                res.status(500);
+                                res.json({ "message": err.message });
+                            })
                         })
                         .catch( err => {
                             console.log(err.message)
                             res.status(500);
                             res.json({ "message": err.message });
                         })
-                    })
-                    .catch( err => {
-                        console.log(err.message)
+                    } catch (err) {
+                    console.log(err.message)
                         res.status(500);
                         res.json({ "message": err.message });
-                    })
-                } catch (err) {
-                console.log(err.message)
-                    res.status(500);
-                    res.json({ "message": err.message });
+                    }
+                } else {
+                    console.log("You don't have permission")
+                    res.status(401);
+                    res.json({ "message": "You don't have permission" });
                 }
-            } else {
-                console.log("You don't have permission")
-                res.status(401);
-                res.json({ "message": "You don't have permission" });
-            }
+            })
+
+            
         }
     })
 })

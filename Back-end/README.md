@@ -7,11 +7,11 @@
     -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
-          - "/"        POST +
+          - "/"        POST 
           - "/"        GET +
           - "/:id"     GET +
-          - "/:id"     PATCH     
-          - "/:id"     DELETE 
+          - "/:id"     PATCH +  
+          - "/:id"     DELETE +
           - "/my"      GET 
       - "/reasons":
           - "/"        POST 
