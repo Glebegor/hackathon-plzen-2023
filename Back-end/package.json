@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "develop": "node index.js",
-    "tests": "node ./tests/tests.js",
-    "migrate-up": "node ./schems/migratesup.js",
-    "migrate-down": "node ./schems/migratesdown.js",
-    "create-admin": "node ./schems/createAdmin.js",
-
-    "db-docker-up-test": "docker run -e POSTGRES_PASSWORD='123321' -p 5436:5432 -d --rm postgres"
+    "create-admin": "node ./schems/createAdmin.js"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +19,8 @@
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
     "pg-migrate": "^2.0.1"
+  },
+  "devDependencies": {
+    "migrate": "^2.0.1"
   }
 }

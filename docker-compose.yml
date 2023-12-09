@@ -12,27 +12,35 @@ services:
 
   back-hackathon:
     build: ./Back-end
-    entrypoint: ["/bin/bash", "./entrypoint.sh"]
     container_name: back-hackathon
     ports: 
-    - '7777:8080'
+    - '8080:8080'
     restart: always
     depends_on:
       - db-hackathon
+      - migrate
+    networks:
+      - default
 
   migrate:
-    image: migrate/migrate
-    volumes:
-      - ./migrations:/migrations
-      - ./migrate-mongo-config.js:/migrate-mongo-config.js
+    build:
+      context: .
+      dockerfile: ./Back-end/Dockerfile.migrate
     depends_on:
       - db-hackathon
+    networks:
+      - default
 
   db-hackathon:
     image: postgres
     ports:
-      - '5436:5432'
+      - '5432:5432'
     container_name: db-hackathon
     restart: always
     environment:
       - "POSTGRES_PASSWORD=123321"
+    networks:
+      - default
+
+networks:
+  default:

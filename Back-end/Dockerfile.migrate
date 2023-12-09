@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /Back-end
+
+COPY package*.json ./
+
+RUN npm install -g migrate@latest
+
+COPY . .
+
+CMD ["migrate", "up"]
