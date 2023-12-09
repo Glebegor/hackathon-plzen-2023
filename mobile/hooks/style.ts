@@ -78,6 +78,13 @@ export const useStyles = () => {
     backIcon: {
       color: '#fff',
     },
+    title: {
+      marginBottom: 24,
+      fontFamily: 'Montserrat-Bold',
+      fontSize: 20,
+      textAlign: 'center',
+      color: '#000',
+    },
   });
 
   return {

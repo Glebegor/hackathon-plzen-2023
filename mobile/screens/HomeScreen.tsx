@@ -43,7 +43,7 @@ export const HomeScreen: React.FC = () => {
         />
         <MenuItem
           icon="house"
-          title="Pošeptejte nám"
+          title="Psaníčko"
           description="Popisek funckionality."
           backgroundColor="#FFE9CA"
           color="#FE9805"
