@@ -44,6 +44,47 @@ export const useStyles = () => {
       borderRadius: 4,
       backgroundColor: '#fff',
     },
+    headerWrap: {
+      backgroundColor: '#00a375',
+    },
+    headerContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 24,
+    },
+    headerIcon: {
+      color: '#ffffff',
+    },
+    headerBottom: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      height: 16,
+      backgroundColor: '#ffffff',
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+    },
+    backButton: {
+      position: 'absolute',
+      right: 24,
+      bottom: 24,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 48,
+      height: 48,
+      backgroundColor: '#00a375',
+      borderRadius: 24,
+    },
+    backIcon: {
+      color: '#fff',
+    },
+    title: {
+      marginBottom: 24,
+      fontFamily: 'Montserrat-Bold',
+      fontSize: 20,
+      textAlign: 'center',
+      color: '#000',
+    },
   });
 
   return {

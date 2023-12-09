@@ -7,19 +7,17 @@ import { Icon } from '../components/elements/Icon';
 
 import { useStyles } from '../hooks/style';
 
-import type { BarCodeReadEvent } from 'react-native-camera';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import type { RootStackParamList } from '../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Intro'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Code'>;
 
 export const CodeScreen: React.FC<Props> = ({ navigation }) => {
   const [flashlightOn, setFlashlightOn] = useState<boolean>(false);
   const { appStyles } = useStyles();
 
-  const onScan = (e: BarCodeReadEvent) => {
-    const code = e.data;
+  const onScan = () => {
     navigation.navigate('Home');
   };
 
