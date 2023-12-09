@@ -19,7 +19,7 @@
 docker compose build
 docker compose up
 npm migrate-up
-npm craete-admin
+npm create-admin
 ```
 
 
@@ -27,8 +27,8 @@ npm craete-admin
 
 ### API lookups
 1. "/auth/v1":
-    -   "/register"    POST 
-    -   "/login"       POST 
+    -   "/register"    POST +
+    -   "/login"       POST +
 2. "/api/v1":
       - "/notes":
           - "/"        POST  
@@ -50,10 +50,10 @@ npm craete-admin
           - "/:id"     DELETE 
           - "/profile" POST 
       - "/emoji":
-          - "/"        POST 
-          - "/"        GET 
-          - "/:id"     GET 
-          - "/:id"     DELETE  
+          - "/"        POST +
+          - "/"        GET +
+          - "/:id"     GET +
+          - "/:id"     DELETE +
 Or you can see it in this format(Handler is realizated if has "+" on the right side):<br>
 "/auth/v1":<br>
 "/auth/v1/register"                  POST<br>

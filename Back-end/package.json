@@ -8,7 +8,7 @@
     "migration-up": "node ./migrations/migratesup.js",
     "migration-down": "node ./migrations/migratesdown.js",
     "create-admin": "node ./migrations/createAdmin.js",
-    "rundb": "docker run -e POSTGRES_PASSWORD='123321' -p 5436:5432 -d --rm -v hackathon-co-23:/var/lib/postgresql/data postgres"
+    "rundb": "docker run -e POSTGRES_PASSWORD='123321' -p 5436:5432 -d --rm -v /opt/hackathon_data:/var/lib/postgresql/data postgres"
   },
   "keywords": [],
   "author": "",

@@ -14,7 +14,7 @@ services:
     build: ./Back-end
     container_name: back-hackathon
     ports: 
-    - '9777:8080'
+    - '8080:8080'
     restart: always
     depends_on:
       - db-hackathon
@@ -24,7 +24,7 @@ services:
   db-hackathon:
     image: postgres
     ports:
-      - '5555:5432'
+      - '5436:5432'
     container_name: db-hackathon
     restart: always
     environment:
