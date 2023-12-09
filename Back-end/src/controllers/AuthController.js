@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
           { expiresIn: '3600s' },
           (err, token) => {
             if (err != undefined) {
-              res.status(401);
+              res.status(500);
               res.json({ "message": err.message });
             } 
             res.status(200);
@@ -57,22 +57,6 @@ router.post('/login', async (req, res) => {
 router.post('/register', verifyToken, async (req, res) => {
   jwt.verify(req.token, Secret_key, (err, authData) => {
     if (authData.userIsDoctor == true) {
-      const userData = {
-        name: '',
-        username: '',
-        surname: '',
-        birth_certificate_number: '',
-        date: '',
-        email: '',
-        telephone: '',
-        insurance_number: '',
-        problems: '',
-        reason_id: '',
-        place: '',
-        notes_id: '',
-        isDoctor: '',
-        emoji_id: ''
-      };
       try {
         const {name, username, surname, password_hash, birth_certificate_number} = req.body;
         const result = pool.query(
@@ -86,11 +70,12 @@ router.post('/register', verifyToken, async (req, res) => {
         })
         .catch(error => {
           console.error(error);
-          res.status(401);
+          res.status(400);
           res.json({ "message": error.message });
         })
       } catch (error) {
         console.log(error.message)
+        res.status(505);
         res.json({ "message": error.message });
       }
     } else {
