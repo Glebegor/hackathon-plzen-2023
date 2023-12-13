@@ -11,6 +11,6 @@
 <p>Patrik - Rokycany</p>
 
 ## Time
-<p>We had only 28 hodin.</p>
+<p>We had only 20 hours.</p>
 ## Place 
-<p>-</p>
+<p>1</p>
